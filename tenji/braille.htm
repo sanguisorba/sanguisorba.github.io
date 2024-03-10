@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version  for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>視覚障害者用ドライバ</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<H1>視覚障害者用ドライバ</H1>
+<H3>知人からもらった98ノートのHDDの中に入っていた。<BR>
+誰かのためにメモを記しておく。</H3>
+<HR>
+<H3><PRE>
+
+BRAILLE.SYS　フリーソフト
+松山盲学校の和田浩一先生が開発したデバイス型ソフトで、
+通常のアプリケーションソフト上で点字入力を可能にする。
+現在の入手方法は不明。
+
+1992/12/04  15:14             6,575 BRAILLE.SYS
+
+保存されていたものはこれだけで使用方法は不明。
+CONFIG.SYSには以下のように記述されていた。
+DEVICE=BRAILLE.SYS /Z
+
+
+VDM100-H
+音声読み上げ装置用ドライバ　らしい
+
+マニュアルはなく使用方法は不明。
+CONFIG.SYSには以下のように記載されていた。
+DEVICE=A:\VDM\VDM100-H.DV4 /VN2 /S7 /VOFF /D=A:\VDM\
+
+AUTOEXEC.BATには以下のように記載されていた。
+VDSLOAD A:\VDM\VDYOM2.TBL
+VDALOAD A:\VDM\JISHO.TXT
+VDCTRL SW1ON
+VDCTRL SW21ON
+VDCTRL SW1ON
+
+\VDM
+
+1993/06/13  09:34            62,360 JISHO.TXT
+1995/06/25  22:28             7,419 TOYOMI.EXE
+1995/01/31  22:01            15,125 VDALOAD.EXE
+1994/04/26  08:14             9,331 VDAMERGE.EXE
+1995/04/23  13:59             8,653 VDCTRL.EXE
+1995/03/24  21:29            13,557 VDKLOAD.EXE
+1992/06/21  13:39             9,115 VDKMERGE.EXE
+1995/04/23  10:52            29,808 VDM100-H.DV4
+1995/05/02  00:20            14,679 VDSLOAD.EXE
+1995/01/08  15:49            49,996 VDSUB1.BIN
+1992/12/28  17:42             3,460 VDSUB1A.BIN
+1995/06/18  17:27            12,052 VDSUB1B.BIN
+1995/02/20  23:35            55,413 VDSUB20.BIN
+1995/02/01  22:02            64,967 VDSUB21.BIN
+1995/02/20  23:36            58,697 VDSUB22.BIN
+1995/02/20  23:36            64,954 VDSUB23.BIN
+1992/06/17  19:53            13,809 VDUTY.EXE
+1995/03/30  22:58             2,836 VDXFER1.DAT
+1994/08/24  00:04               838 VDXFER1.SUB
+1995/01/24  22:10            15,691 VDXLOAD1.EXE
+1995/04/28  00:32            96,546 VDYOM.TXT
+1995/01/03  20:58            55,980 VDYOM1.TBL
+1995/03/11  22:00            60,176 VDYOM2.TBL
+1994/09/04  15:51             6,489 YOMANAI.EXE
+
+ちなみにDM Editorというフリーのエディタを使用していたらしい。
+
+</PRE></H3>
+<H2 align="center"><A href="index.htm">戻る</A></H2>
+</BODY>
+</HTML>

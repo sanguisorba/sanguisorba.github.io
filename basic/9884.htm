@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PC-9884</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>PC-9884</H2>
+<IMG src="9884.gif" width="384" height="384" border="0">
+<BR>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">PC-9881<BR>
+      ・PC-9881 8インチフロッピィドライブ<BR>
+      ・PC-9881 ユーザーズマニュアル PC-9881-UM<BR>
+      ・PC-9881 システムディスク PC-9884 2枚<BR>
+      ・PC-9881 信号ケーブル 1.1m<BR>
+      ・DC電源ケーブル 1m</TD><BR>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>初期のN<sub>88</sub>DISK-BASIC(86)はROM BASICにだいぶ依存している。
+バージョン表記はROM BASICのバージョンがそのまま表示されるので、
+無印PC-9801では1.0、VXでは2.0と同じディスクで違うバージョンが表示される。
+
+初期のDISK-BASICには以下の型番が存在する。構成は5インチと8インチとで異なっており、
+5インチフロッピィディスクではシステムディスク1枚と未使用フロッピィディスク1枚、
+8インチフロッピィディスクではシステムディスク2枚で販売されていた。
+
+補足：ディスクドライブの型番と種類
+PC-8031-1V     5インチ片面倍密度(1D,143KB) 1台
+PC-8031-1W     5インチ片面倍密度(1D,143KB) 2台
+PC-8031-2W     5インチ両面倍密度(2D,320KB) 2台
+PC-80S31(*)    5インチ両面倍密度(2D,320KB) 2台
+PC-8881        8インチ(1MB) 2台
+PC-9881        8インチ(1MB) 2台、PC-9884付属
+(*)80という型番がついていますが、PC-9800シリーズの周辺機器です。
+
+
+N<sub>88</sub>のつかないDISK-BASIC(86)は5&quot;1Dか5&quot;2Dのみで8&quot;の提供はありませんでした。
+また、対応しているディスクも5&quot;1Dか5&quot;2Dのみで8&quot;2Dは非対応です。
+そのため、320KBフロッピィディスクインターフェイスを持つPC-9801/E/F/M専用です。
+PC-9834-1VA  　PC-8031-1V用DISK-BASIC(86)
+PC-9834A       PC-8031-1W用DISK-BASIC(86)
+PC-9834-2WA    PC-8031-2W or PC-80S31用DISK-BASIC(86)
+
+
+N<sub>88</sub>DISK-BASIC(86)は5&quot;2Dか8&quot;2D(1MB)での提供でした。
+PC-9835-1W     PC-8031-1W用N<sub>88</sub>DISK-BASIC(86)
+PC-9835-2W     PC-8031-2W or PC-80S31用N<sub>88</sub>DISK-BASIC(86)
+PC-9884        PC-9881 or PC-8881用N<sub>88</sub>DISK-BASIC(86)
+
+PC-98H31は5MB固定ディスクドライブです。
+PC-98H35-1W    PC-98H31とPC-8031-1W用N<sub>88</sub>DISK-BASIC(86)
+PC-98H35-2W    PC-98H31とPC-8031-2W or PC-80S31用N<sub>88</sub>DISK-BASIC(86)
+PC-98H84       PC-98H31とPC-9881 or PC-8881用N<sub>88</sub>DISK-BASIC(86)
+
+PC-98H33は10MB固定ディスクドライブです。
+PC-98H37-1W    PC-98H33とPC-8031-1W用N<sub>88</sub>DISK-BASIC(86)
+PC-98H37-2W    PC-98H33とPC-8031-2W or PC-80S31用N<sub>88</sub>DISK-BASIC(86)
+PC-98H85       PC-98H33とPC-9881 or PC-8881用N<sub>88</sub>DISK-BASIC(86)
+
+また、N<sub>88</sub>DISK-BASIC(86)の型番末尾に(K)がついているものは日本語入力対応です。
+例: PC-9884(K), PC-98H37-2W(K)など
+
+★仕様★
+〇VXでも動いた。
+〇システムメッセージはすべて英語。
+○8&quot;のみ物理フォーマットをしないため、MS-DOSでフォーマットした8&quot;ディスクが使えない。
+○5&quot;1D,5&quot;2D,8&quot;2Dの3種類のみで2DDは未対応。
+
+★ファイルリスト★
+Disk version                                                                    
+How many files(0-15)?                                                           
+NEC N-88 BASIC(86) version 2.0                                                  
+Copyright (C) 1983 by NEC Corporation / Microsoft Corp.                         
+612958 Bytes free                                                               
+Ok                                                                              
+FILES                                                                           
+format.n88 1    xfiles.n88 1    sysgen.n88 1    setinf.n88 1    backup.n88 1    
+menu8 .    1    demo1 .    2    CAT1  .    1    CAT2  .    1    CAT3  .    3    
+CAT6  .    1    CAT7  .    2    CAT8  .    1    BLOCK1.    2    BLOCK2.    2    
+DEMOEN.D   2    catalo.g1  1    catalo.g2  1    catalo.g3  1    catalo.g4  1    
+catalo.g5  1    catalo.g6  1    catalo.g7  1    catalo.g8  1    catalo.g9  1    
+demo2 .    4    demo3 .    1    NeC   .    4    HAKO  .    3    demo5 .    1    
+CAT9  .    1                                                                    
+Ok                                                                              
+
+ユーティリティは上の5つだけで、あとはすべてデモプログラムです。
+
+format.n88 - フォーマッタ
+xfiles.n88 - 異なる種類のディスクに全ファイルを転送
+sysgen.n88 - オートスタートのためのIDセクタ設定
+setinf.n88 - DISK CODEだけをコピー 
+backup.n88 - ディスクコピー
+  
+★デモメニュー (menu8)★
+                                                                                
+                                                                                
+        *****   ｵ ｽ ｷ ﾅ   ﾌﾟﾛｸﾞﾗﾑ   ｦ                                           
+                                                                                
+                            ｴ ﾗ ﾝ ﾃﾞ  ｸ ﾀﾞ ｻ ｲ   *****                          
+                                                                                
+                                                                                
+                 ･ 1 ﾄ 3 ﾊ  ｺｳｶｲｿﾞｳﾄﾞ ﾃﾞｨｽﾌﾟﾚｲ ｶﾞ ﾋﾂﾖｳ ﾃﾞｽ                      
+                 ･ 1 ﾊ   ｶﾝｼﾞ  ROM ﾎﾞｰﾄﾞ  ｶﾞ  ﾋﾂﾖｳ ﾃﾞｽ                          
+                                                                                
+                                                                                
+                                                                                
+             1.       PC-9800 ｼﾘｰｽﾞ  ﾉ  ｺﾞｼｮｳｶｲ                                 
+                                                                                
+             2.       ｻﾝｼﾞｹﾞﾝ  ｸﾞﾗﾌｨｯｸ                                          
+                                                                                
+             3.       ｸﾞﾗﾌｨｯｸ                                                   
+                                                                                
+             4.       ﾗﾝﾀﾞﾑ                                                     
+                                                                                
+                              ﾄﾞﾚ ﾆ   ｼ ﾏ ｽ ｶ ?                                 
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+★FORMAT.N88★
+コードを見る限り、5&quot;1D,5&quot;2D,8&quot;2Dの3種類のみに対応している。
+8&quot;2Dで物理フォーマットが行われないことはマニュアルにも書いてあるし、
+FORMAT.N88の 1350行目
+
+1350 IF MAXTRK=34 OR MAXTRK=39 THEN INPUT "Do you need physical formatting(y/n)"
+
+からも、8&quot;2Dに対しては物理フォーマットが行われない事が書いてある。
+
+また、奇数ドライブはフォーマットする事ができないようになっている。
+（システムディスクの誤フォーマット防止？）
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

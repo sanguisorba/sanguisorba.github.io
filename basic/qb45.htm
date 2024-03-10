@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>QuickBASIC 4.5</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>Microsoft QuickBASIC 4.5</H2>
+<IMG src="qb45.gif" width="512" height="384" border="0">
+<BR>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">Microsoft QuickBASIC 4.5<BR>
+      中古でディスクのみを買ったため添付品不明</TD><BR>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>★注目ポイント★
+・87ライブラリが無い
+・LINK 3.69, LIB 3.14付属
+・グラフィクスライブラリを標準装備（！）
+・Quick C 2.0, MS-C 5.1, MASM 5.1, FORTRAN 4.1と混合リンク可能
+・プログラム内ヘルプが充実していてマニュアルを持っていない割にわかりやすい
+
+グラフィカルなゲームを作るには最適と思いますが、数値計算には向いていなさそうです。
+クロスランゲージでGUIをQB, エンジンをFORTRANなどで書くのはアリかもしれませんね。
+
+★メモ★
+QBコンパイラ BCのデフォルト書式
+BC [.BAS] /D /O /T /C:512;
+QBのIDEからコンパイルすると自動でスイッチがつくのでそっちのほうがいい
+
+リンクする際は/EXオプションをつけてライブラリを指定する
+代数数値演算
+BCOM45A - ランタイムを内蔵したライブラリ
+BRUN45A - ランタイムを分離したライブラリ　BRUN45A.EXEが必要
+エミュレータ
+BCOM45E - ランタイムを内蔵したライブラリ
+BRUN45E - ランタイムを分離したライブラリ　BRUN45E.EXEが必要
+
+遊んでみてなにかわかったら書き足しますね^o^/
+
+（再配布に関する規定がないのですが、ランタイムの配布云々はどうなっているんでしょう）
+
+★ライブラリの話★
+QB45では代数数値演算(Alt math)とエミュレータの2つがあります。
+Alt mathは精度を犠牲にして計算速度を速くする方式で87は使用しません。
+Emulatorは86/87両対応ですが、87なしでは遅いため、87搭載推奨です。
+（参考資料）数値演算ライブラリのベンチマーク(20,000回のループ)
+            CPU PC-9801VX21 clock:10Mhz
+                     +------------+-------------------------+
+                     |Alt Math    |Emulator Math Library    |
+                     |  Library   |ｺﾌﾟﾛｾｯｻあり |ｺﾌﾟﾛｾｯｻなし |
+ +-------------------+------------+------------+------------+
+ |倍精度実数の加算   |        8sec|        2sec|       14sec|
+ |倍精度実数の除算   |       10sec|        2sec|       15sec|
+ |TAN関数            |       98sec|        6sec|       66sec|
+ |LOG関数            |       24sec|        3sec|       34sec| 
+ |SQR関数            |       11sec|        2sec|       16sec|
+ +-------------------+------------+------------+------------+
+
+FORTRAN 4.0 (以下FL4)ではAlt math, Emulator,87の3つのライブラリがあります。
+87はその名の通り、87専用ライブラリで87搭載必須です。
+86/87搭載の判定がないため、87搭載環境下では最速となります。
+実は87ライブラリとEmulatorライブラリは中身がほぼ同じです。
+LLIBFA = Alt math lib (中身はLLIBFPと全く違う)
+LLIBFP + 87 = 87 lib 
+LLIBFP + EM = Emulator lib
+EM.LIBはEMULATOR.OBJ + EMOEM.OBJ という構成になっており、
+EMOEMは87のインターフェースに関する機種固有情報が入っています。
+
+FL4ではPC/AT用EMOEMがデフォルトでは組み込まれているため、
+8087用EMOEM98 or 80287用EMOEMXAのどちらかを組み込んで使うという方式でした。
+
+一方、QB45ではBCOM45E.LIB内にEMOEMが組み込まれているためPC98専用であり、
+またグラフィックを使用していなくても、PCATで87は使用できないことが推測されます。
+
+BCOM45E.LIB内でEMULATOR.OBJに相当する機能はPEMR.OBJです。
+
+参考:
+QB45 BCOM45E.LIB から抜粋
+pemr              Offset: 0001cc00H  Code and data size: 2597H
+  __fpemulator      __FPEXCEPTION87   __fpmath          __fptaskdata
+
+emoem             Offset: 00020730H  Code and data size: 14bH
+  __FPINSTALL87     __FPTERMINATE87 
+
+FL4 EM.LIB (入っているOBJはこの2つだけです)
+emulator          Offset: 00000010H  Code and data size: 2453H
+  __fpemulator      __FPEXCEPTION87   __fpmath          __fptaskdata
+
+emoem             Offset: 00003910H  Code and data size: 142H
+  __FPINSTALL87     __FPTERMINATE87 
+
+8087と80287では8255ポートのアドレスが異なるためFL4ではEMOEMが2種用意されていたのですが、
+QB45では両方のテーブルが組み込まれているので、自動判別できるのかもしれません。
+FL4と比べると8255スレーブのEOIコマンドが修正(?)されています。これは知りませんでした。
+
+pemr, emoemを抜き出し、改造することで87ライブラリを作成したり、
+他機種に移植できる可能性があります。
+FL4のEMOEMをQB45から抜き出したものに差し替えることもできるかもしれません。
+（やるにはちゃんとした検証が必要）
+海外サイトで落ちているIBM PC用コンパイラを98用に改造する場合も同様です。
+（現段階ではここまで。続報がありましたらお知らせします）
+
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
