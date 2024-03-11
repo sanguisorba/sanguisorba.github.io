@@ -1,0 +1,465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>フロッピーディスクの構造(MS-DOS)</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>フロッピーディスクの構造 (MS-DOS)</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>独自研究の内容を多く含みます</B><BR>
+      ※1.44MB FDについては無いものとします</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>★FDDの基礎
+PC98のFDDは主に1MB、640KB、両用の3種類があります。
+扱えるディスクの種別は、
+1MB : 2HD (1.2MB)、8&quot;2D(1.2MB)、8&quot;1(S)(256KB)
+640KB : 2DD/8(640KB)、2DD/9(720KB)
+
+3.5&quot;/5&quot; 2HDと8&quot;2Dはディスクの仕様が異なりますが、
+通常のDOSにおける使用範囲では意識する必要ありません。
+[Tips]
+8&quot;2Dは77トラックしかない。
+3.5&quot;/5&quot;2HDは80トラックあるが、77トラックまでしか使わない。
+
+VX以降の内臓FDDは640KB/1MB両用であることが多いです。
+両用 = 内臓FDDと思ってもらってもかまいません。
+（のっぺらボードを使って外部FDを内臓=両用とすることもできます）
+
+尚、黎明期のDOSでは使用可能なFDDに制限があります。
+
+・MS-DOS 1.25 PS98-111-SF
+8&quot;ドライブ2基固定です。ドライブが1基しかなくても
+Bドライブがあるものとして認識されます。
+8&quot;2D (=1MB)と8&quot;1 (250KB)をサポートしています。
+
+・MS-DOS 2.0 PS98-121-H4W
+8&quot;ドライブ(=1MB)と5&quot;ドライブ(=640KB)に対応
+まだ5&quot;2HD(1MB)は販売されていませんが、
+8&quot;2Dとして5&quot;2HDが利用可能です。
+8&quot;2D(=1MB)、8&quot;1(250KB)、5&quot;2DD(640KB)の読み書き、
+5&quot;1D(160KB/180KB)、5&quot;2D(320KB/360KB)の読みに対応
+
+1MB/640KB両用FDDは非対応です。
+1.両用FDDから起動した場合、起動ディスクのフォーマットに固定
+2.外部FDDから起動した場合、両用FDDは認識されない
+
+・MS-DOS 2.0 PS98-122 以降
+このバージョンから1MBと640KBという表記に変更。
+両用FDDにも対応しました。
+以降のバージョンは全て同じだと思います。
+
+・MS-DOS 5.0A(-H)の後期版は1.44MB FDに対応しています
+
+★320KB FD (MS-DOS 2.0以降)
+320KB FDの利用は制限があります。
+・640KB FDからのみ読み取り可能（←重要）
+・読み取りのみでデータの書き込みはできない
+
+両用FDDからも読み取りのみ可能です。
+
+640KB経由の320KB FD書き込みに関しては別記事作成予定
+
+★320KB FDD (MS-DOS 1.25)
+PC-9801/E/F/Mには320KB FDインタフェースという、
+PC-80S31等と接続するポートがありました。
+このFDDについてわかっていることをまとめました。
+
+・MS-DOS 1.25の5&quot;版、PS98-111-H2Wは
+　確定で320KB FDDから起動した
+　（当時は640KBがないので5&quot; = 320KB）
+
+・MS-DOS 2.0は320KB FDDを認識しない
+
+・MS-DOS 2.0マニュアルにも320KB FDDサポートの記述はない
+（1MB FDD/640KB FDD/固定ディスクの3種類）
+
+・MS-DOS 2.0のマニュアルには以下のことが書かれている
+　　「PS98-111-H2Wシステムにてフォーマットされた
+　　システムディスクの形式のディスクはMS-DOS 2.0では
+　　使用できません」
+
+・PS98-111-H2Wは256バイトセクタ
+
+・2.0以降でも外部ドライバで320KB FDDを認識・使用することは可能
+
+・PS98-111-SFのIO.SYSは1MB FDのDS0決め打ちで
+　MSDOS.SYSを探しにいくため、PS98-111-H2Wを
+　練成する試みは失敗しています
+
+システムディスク形式の320KB、320KB FDDに関しては
+別記事に書きたいと思っています
+
+★FDフォーマット</PRE>
+      <TABLE border="1" width="512">
+        <TBODY>
+          <TR>
+            <TD align="center">1MB</TD>
+            <TD valign="middle" align="center">250KB</TD>
+            <TD valign="middle" align="center">1.25MB</TD>
+            <TD valign="middle" align="center">1.21MB</TD>
+            <TD valign="middle" align="center">1.44MB</TD>
+          </TR>
+          <TR>
+            <TD align="center">名称</TD>
+            <TD valign="middle" align="center">8&quot;1<BR>
+            8&quot;1S</TD>
+            <TD valign="middle" align="center">8&quot;2D<BR>
+            5&quot;2HD<BR>
+            3.5&quot;2HD</TD>
+            <TD valign="middle" align="center">5&quot;2HC<BR>
+            3.5&quot;2HC</TD>
+            <TD valign="middle" align="center">3.5&quot;2HD</TD>
+          </TR>
+          <TR>
+            <TD align="center">全容量<BR>
+            (バイト)</TD>
+            <TD valign="middle" align="center">256,256</TD>
+            <TD valign="middle" align="center">1,261,568</TD>
+            <TD valign="middle" align="center">1,213,952</TD>
+            <TD valign="middle" align="center">1,474,560</TD>
+          </TR>
+          <TR>
+            <TD align="center">実容量<BR>
+            (バイト)</TD>
+            <TD valign="middle" align="center">252,416</TD>
+            <TD valign="middle" align="center">1,250,304</TD>
+            <TD valign="middle" align="center"></TD>
+            <TD valign="middle" align="center">1,457,664</TD>
+          </TR>
+          <TR>
+            <TD align="center">面</TD>
+            <TD valign="middle" align="center">片面</TD>
+            <TD valign="middle" align="center">両面</TD>
+            <TD valign="middle" align="center">両面</TD>
+            <TD valign="middle" align="center">両面</TD>
+          </TR>
+          <TR>
+            <TD align="center">シリンダ<BR>
+            /面</TD>
+            <TD valign="middle" align="center">77</TD>
+            <TD valign="middle" align="center">77</TD>
+            <TD valign="middle" align="center">80</TD>
+            <TD valign="middle" align="center">80</TD>
+          </TR>
+          <TR>
+            <TD align="center">トラック</TD>
+            <TD valign="middle" align="center">77</TD>
+            <TD valign="middle" align="center">154</TD>
+            <TD valign="middle" align="center">160</TD>
+            <TD valign="middle" align="center">160</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ/<BR>
+            トラック</TD>
+            <TD valign="middle" align="center">26</TD>
+            <TD valign="middle" align="center">8</TD>
+            <TD valign="middle" align="center">15</TD>
+            <TD valign="middle" align="center">18</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ長<BR>
+            (バイト)</TD>
+            <TD valign="middle" align="center">128</TD>
+            <TD valign="middle" align="center">1024</TD>
+            <TD valign="middle" align="center">512</TD>
+            <TD valign="middle" align="center">512</TD>
+          </TR>
+          <TR>
+            <TD align="center">ルート<BR>
+            ディレクトリ</TD>
+            <TD valign="middle" align="center">68</TD>
+            <TD valign="middle" align="center">192</TD>
+            <TD valign="middle" align="center">224</TD>
+            <TD valign="middle" align="center">224</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ/<BR>
+            FAT</TD>
+            <TD valign="middle" align="center">6</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD valign="middle" align="center">7</TD>
+            <TD valign="middle" align="center">9</TD>
+          </TR>
+          <TR>
+            <TD align="center">FAT ID</TD>
+            <TD valign="middle" align="center">FE</TD>
+            <TD valign="middle" align="center">FE</TD>
+            <TD valign="middle" align="center">F9</TD>
+            <TD valign="middle" align="center">F0 (?)</TD>
+          </TR>
+          <TR>
+            <TD align="center">PDA</TD>
+            <TD valign="middle" align="center">90</TD>
+            <TD valign="middle" align="center">90</TD>
+            <TD valign="middle" align="center">90</TD>
+            <TD valign="middle" align="center">30</TD>
+          </TR>
+        </TBODY>
+      </TABLE>※2HCはEPSON製MS-DOSのみ正式サポート。<BR>
+      <BR>
+      <TABLE border="1" width="512">
+        <TBODY>
+          <TR>
+            <TD align="center">640KB</TD>
+            <TD valign="middle" align="center">640KB</TD>
+            <TD valign="middle" align="center">720KB</TD>
+            <TD valign="middle" align="center">160KB</TD>
+            <TD valign="middle" align="center">180KB</TD>
+            <TD align="center">320KB</TD>
+            <TD align="center">360KB</TD>
+          </TR>
+          <TR>
+            <TD align="center">名称</TD>
+            <TD valign="middle" align="center">2DD/8</TD>
+            <TD valign="middle" align="center">2DD/9</TD>
+            <TD valign="middle" align="center">1D/8</TD>
+            <TD valign="middle" align="center">1D/9</TD>
+            <TD align="center">2D/8</TD>
+            <TD align="center">2D/9</TD>
+          </TR>
+          <TR>
+            <TD align="center">全容量<BR>
+            (バイト)</TD>
+            <TD valign="middle" align="center">655,360</TD>
+            <TD valign="middle" align="center">737,280</TD>
+            <TD valign="middle" align="center">163,840</TD>
+            <TD valign="middle" align="center">184,320</TD>
+            <TD align="center">327,680</TD>
+            <TD align="center">368,640</TD>
+          </TR>
+          <TR>
+            <TD align="center">実容量<BR>
+            (バイト)</TD>
+            <TD valign="middle" align="center">649,216</TD>
+            <TD valign="middle" align="center">730,112</TD>
+            <TD valign="middle" align="center">160,256</TD>
+            <TD valign="middle" align="center">179,712</TD>
+            <TD align="center">322,560</TD>
+            <TD align="center">362,496</TD>
+          </TR>
+          <TR>
+            <TD align="center">面</TD>
+            <TD valign="middle" align="center">両面</TD>
+            <TD valign="middle" align="center">両面</TD>
+            <TD valign="middle" align="center">片面</TD>
+            <TD valign="middle" align="center">片面</TD>
+            <TD valign="middle" align="center">両面</TD>
+            <TD valign="middle" align="center">両面</TD>
+          </TR>
+          <TR>
+            <TD align="center">シリンダ<BR>
+            /面</TD>
+            <TD valign="middle" align="center">80</TD>
+            <TD valign="middle" align="center">80</TD>
+            <TD valign="middle" align="center">40</TD>
+            <TD valign="middle" align="center">40</TD>
+            <TD align="center">40</TD>
+            <TD align="center">40</TD>
+          </TR>
+          <TR>
+            <TD align="center">トラック</TD>
+            <TD valign="middle" align="center">160</TD>
+            <TD valign="middle" align="center">160</TD>
+            <TD valign="middle" align="center">40</TD>
+            <TD valign="middle" align="center">40</TD>
+            <TD align="center">80</TD>
+            <TD align="center">80</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ/<BR>
+            トラック</TD>
+            <TD valign="middle" align="center">8</TD>
+            <TD valign="middle" align="center">9</TD>
+            <TD valign="middle" align="center">8</TD>
+            <TD valign="middle" align="center">9</TD>
+            <TD align="center">8</TD>
+            <TD align="center">9</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ長<BR>
+            (バイト)</TD>
+            <TD valign="middle" align="center">512</TD>
+            <TD valign="middle" align="center">512</TD>
+            <TD valign="middle" align="center">512</TD>
+            <TD valign="middle" align="center">512</TD>
+            <TD valign="middle" align="center">512</TD>
+            <TD valign="middle" align="center">512</TD>
+          </TR>
+          <TR>
+            <TD align="center">ルート<BR>
+            ディレクトリ</TD>
+            <TD valign="middle" align="center">112</TD>
+            <TD valign="middle" align="center">112</TD>
+            <TD valign="middle" align="center">112</TD>
+            <TD valign="middle" align="center">112</TD>
+            <TD align="center">64</TD>
+            <TD align="center">64</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ/<BR>
+            FAT</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD valign="middle" align="center">3</TD>
+            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD align="center">1</TD>
+            <TD align="center">2</TD>
+          </TR>
+          <TR>
+            <TD align="center">FAT ID</TD>
+            <TD valign="middle" align="center">FB</TD>
+            <TD valign="middle" align="center">F9</TD>
+            <TD valign="middle" align="center">FE</TD>
+            <TD valign="middle" align="center">FC</TD>
+            <TD align="center">FF</TD>
+            <TD align="center">FD</TD>
+          </TR>
+          <TR>
+            <TD align="center">PDA</TD>
+            <TD valign="middle" align="center">70</TD>
+            <TD valign="middle" align="center">70</TD>
+            <TD valign="middle" align="center">70</TD>
+            <TD valign="middle" align="center">70</TD>
+            <TD align="center">70</TD>
+            <TD align="center">70</TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+      <BR>
+      <BR>
+      <TABLE border="1" width="512">
+        <TBODY>
+          <TR>
+            <TD align="center">320KB<BR>
+            (DOS 1.25)</TD>
+            <TD valign="middle" align="center">160KB</TD>
+            <TD align="center">320KB<BR>
+            データ</TD>
+            <TD align="center">320KB<BR>
+            システム</TD>
+          </TR>
+          <TR>
+            <TD align="center">名称</TD>
+            <TD valign="middle" align="center">5&quot;1D</TD>
+            <TD align="center">5&quot;2D</TD>
+            <TD align="center">5&quot;2D</TD>
+          </TR>
+          <TR>
+            <TD align="center">全容量(バイト)</TD>
+            <TD valign="middle" align="center">163,840</TD>
+            <TD align="center">327,680</TD>
+            <TD align="center">327,680</TD>
+          </TR>
+          <TR>
+            <TD align="center">実容量(バイト)</TD>
+            <TD valign="middle" align="center">160,256</TD>
+            <TD align="center">322,560</TD>
+            <TD align="center">調査中</TD>
+          </TR>
+          <TR>
+            <TD align="center">面</TD>
+            <TD valign="middle" align="center">片面</TD>
+            <TD valign="middle" align="center">両面</TD>
+            <TD valign="middle" align="center">両面</TD>
+          </TR>
+          <TR>
+            <TD align="center">シリンダ/面</TD>
+            <TD valign="middle" align="center">40</TD>
+            <TD align="center">40</TD>
+            <TD align="center">40</TD>
+          </TR>
+          <TR>
+            <TD align="center">トラック</TD>
+            <TD valign="middle" align="center">40</TD>
+            <TD align="center">80</TD>
+            <TD align="center">80</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ/トラック</TD>
+            <TD valign="middle" align="center">8</TD>
+            <TD align="center">8</TD>
+            <TD align="center">16</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ長(バイト)</TD>
+            <TD valign="middle" align="center">512</TD>
+            <TD valign="middle" align="center">512</TD>
+            <TD valign="middle" align="center">256</TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+      <PRE>※1.25は2.0と大きく仕様が異なります
+・BPBがないためFAT IDが無い
+・そもそも320KB FDDの制御はupd765でない
+
+★FDの構造
+・IPL (DOS 2.x以降はBPBを含む)
+・FAT
+・予備FAT
+・データ＆ディレクトリ…
+
+★IPL &amp; BPB
+場所:セクタ0
+
+2.0以降ではBPBと呼ばれるFDの仕様を収めたブロックがあります。
+PC98ではファイル操作時、BPBの情報を参照しません。
+※2DDのIPLではFATIDで8セクタか9セクタかを判別しています。
+
+※加筆予定。工事中
+
+★FAT
+IPLの次はFATテーブルがあります。
+各セクタの使用状況が12bitで収められています。
+FATが12bitだから、FAT12です。
+基本的には次のセクタ番号です。
+以下は特別な意味をもった値です。
+・空き状態である (000h)
+・終端セクタである (FFFh)
+・不良セクタである(FF7h)
+・予約済みである (FFEhなど...)
+
+このあたりは加筆予定です。
+FATセクタの説明とかを書きたい
+
+次のセクタにも同じ内容のFATが予備で記録されています。
+
+★データ＆ディレクトリ
+
+FATの後は全てデータ領域またはディレクトリ領域です。
+
+FAT12の仕様でFATセクタ0とFATセクタ1は予約済として
+必ず不使用となっています。
+また、ルートディレクトリエントリは必ずFATセクタ2にあります
+
+加筆予定
+
+★FD関連の命令は書く予定ありません。
+書くなら別記事に書きます。
+とりあえずこんな感じの内容が入りますよ！
+</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
