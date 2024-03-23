@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>N88BASIC: MUSIC拡張命令</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>N88BASIC: MUSIC拡張命令</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>MS-DOS版N88BASIC(Ver1.0)</B><BR>
+      PC-9801-14用拡張機能 MUSIC.EXE で使える機能一覧<BR>
+      ※概要しか書いていません。詳細はマニュアル参照</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE><FONT size="+2">ON PLAY GOSUB</FONT>
+ON PLAY([チャンネル番号],[残バイト数]) GOSUB [行番号]
+チャンネル番号のサウンドバッファ内の未演奏データが
+残バイト数以下になったとき、割込を行う
+残バイト数は0 - 32767
+スタック領域の扱いに要注意
+例 ON PLAY(1,512) GOSUB 100
+
+<FONT size="+2">PLAY (割込)</FONT>
+PLAY [ON/OFF/STOP]
+割込の許可・禁止・停止を設定
+あらかじめON PLAY GOSUBで割込条件を定義する
+
+ON: 条件を満たすたびに定義した処理ルーチンへ分岐する
+
+OFF: 条件を満たしても処理ルーチンへ分岐しない
+
+STOP: 条件を満たしても処理ルーチンへ分岐しない
+ただし割込条件を満たしていた事を記憶しており、
+PLAY ONによって割込許可となると処理ルーチンへ分岐する
+
+
+<FONT size="+2">PLAY (演奏)</FONT>
+PLAY (CH1の演奏データ),(CH2の演奏データ)...
+
+CHxの演奏データ省略可能で、例えばCH3とCH6だけ演奏したい場合、
+PLAY ,,"O4CDEF",,,"O5CDEF" みたいに書く。
+
+演奏データのMMLコマンド
+Cx, Dx, Ex, Fx, Gx, Ax, Bx
+音程指定。xにはx分音符といった音長を指定 (x=1-64)
+省略時はLxで指定した音長
+
+Lx
+Cx, Dx, Ex, Fx, Gx, Ax, Bxで
+音長を省略した時の音長を指定 (x=1-64)
+
+Sx,x,x,x,x
+エンベロープ。
+省略不可で必ず5つの値を都度設定する必要あり。
+
+Ox
+オクターブ値。xは4-7。
+
+Kx
+指定された高さの音を発生。
+O4C=1, O7B+=49 の49段階
+
+Rx,Px
+休符 x分休符の要領で音長を指定 (x=1-64)
+
++/-
+半音上げ／半音下げ　例 O6C+8O7E-16
+
+.
+符点音符 例:C8.
+
+^
+前後の音長をつなぐ。例えばC8^8=C4
+
+Tx
+テンポ
+
+MF/MB
+PLAYの演奏形態
+MF : フォアグラウンド演奏（デフォルト）
+MB : バックグラウンド演奏
+MFでは演奏終了後に次の命令が実行
+MBではデータをバッファに格納後、すぐに次の命令へ移る
+
+<FONT size="+2">PLAY ALLOC</FONT>
+PLAY ALLOC (バッファ指定)
+サウンドバッファの確保および初期化
+PC-9801-14は8CHまであるため最大8CH分指定する。
+省略は0となる。
+また、バッファ確保にはCLEARを併用する
+例 (DISK-BASIC)
+CLEAR ,&H1FDF-(16*8)
+PLAY ALLOC 255,255,255,255,255,255,255,255
+
+例 (DOS版N88BASIC)
+CLEAR  16*8+32
+PLAY ALLOC 255,255,255,255,255,255,255,255
+
+CLEAR  16*4+32
+PLAY ALLOC 255,255,255,255
+
+<FONT size="+3">★関数</FONT>
+
+<FONT size="+2">STATUS PLAY</FONT>
+STATUS PLAY(CH)
+サウンドバッファの未演奏データのバイト数
+例 PRINT STATUS PLAY(2)
+</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

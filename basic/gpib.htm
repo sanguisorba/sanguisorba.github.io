@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>N88BASIC: GPIB拡張命令</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>N88BASIC: GPIB拡張命令</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>MS-DOS版N88BASIC(Ver1.0)</B><BR>
+      PC-9801-19用拡張機能 GPIB.EXE で使える機能一覧<BR>
+      ※概要しか書いていません。詳細はマニュアル参照</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE><FONT size="+2">CMD DELIM</FONT>
+CMD DELIM=[0-3]
+デリミタ指定
+0 : CR+LF
+1 : CR
+2 : LF
+3 : EOI (※)
+※PRINT@,RBYTE,WBYTEでは最後に@を付加しないとEOIはTRUEにならない
+例 CMD DELIM=3
+
+<FONT size="+2">CMD PPR (スレーブ)</FONT>
+CMD PPR=[0-2]
+スレーブモード下でパラレルポートに対する応答モード指定
+0 : 無応答
+1 : 応答
+2 : SRQ送信時に応答
+例 CMD PPR=1
+
+<FONT size="+2">CMD TIMEOUT</FONT>
+CMD TIMEOUT=[0-255]
+タイムアウト時間指定
+IEEEステートメント開始から何秒でバスエラーとするかを0 - 255で指定
+0はタイムアウトチェック無し
+例 CMD TIMEOUT=30
+
+<FONT size="+2">INPUT@ (マスタ)</FONT>
+INPUT@[アドレス] (, [リスナアドレス]); 変数, 変数 ...
+指定したトーカから送信されるデータを受信し、変数へ代入
+マスタモードでは頭のスペースと終わりのスペースは無視され、
+255バイトを超えると次の文字変数へ代入される。
+例 INPUT@1, 3; A$, B$, C$
+
+<FONT size="+2">INPUT@ (スレーブ)</FONT>
+INPUT@ ; 変数, 変数 ...
+
+<FONT size="+2">IRESET REN (マスタ)</FONT>
+リモートイネーブル(REN)をFALSEで送出。
+
+<FONT size="+2">ISET IFC (マスタ)</FONT>
+ISET IFC, [整数]
+インタフェースクリア(IFC)を送出
+送出時間は[整数]×100マイクロ秒でデフォルトは1。
+
+<FONT size="+2">ISET REN (マスタ)</FONT>
+リモートイネーブル(REN)をTRUEで送出。
+
+<FONT size="+2">ISET SRQ (スレーブ)</FONT>
+ISET SRQ[@] [N]
+SRQを送出。
+@ : デバイスステータス送出と同時にEOIがTRUE
+N : 省略の場合はシリアルポールされるまで待つ
+
+<FONT size="+2">LINE INPUT@ (マスタ)</FONT>
+LINE INPUT@[アドレス] (, [リスナアドレス]); 文字変数
+指定したトーカから送信される文字列データを受信し、文字変数へ代入
+
+<FONT size="+2">LINE INPUT@ (スレーブ)</FONT>
+LINE INPUT@ ; 文字変数
+
+<FONT size="+2">ON SRQ GOSUB (コントローラ)</FONT>
+ON SRQ GOSUB 行番号
+STQの受信による割込発生時に分岐する処理ルーチンを指定
+処理ルーチンにはPOLLが含まれている必要がある
+行番号が0で割込禁止。再度定義することで割込許可となる
+(関連: SRQ)
+
+<FONT size="+2">POLL (コントローラ)</FONT>
+POLL [アドレス],数値変数 (; [アドレス], 数値変数)
+シリアルポールイネーブル(SPE)を送出し、
+相手からデバイスステータスを受信し数値変数に代入
+
+<FONT size="+2">PPOLL (マスタ)</FONT>
+PPOLL (PPU) (,[リスナアドレス1], [PPE1/PPD]) (,[リスナアドレス2], [PPE2/PPD])
+パラレルポートの応答出力用ラインの割付
+PPU : パラレルポールアンコンフィギュアを送出する
+
+<FONT size="+2">PRINT@ (マスタ)</FONT>
+PRINT@[リスナアドレス] (, [リスナアドレス]); [データ] (,[データ] ...) [@]
+データをASCII文字列として送出
+@ : EOIを有効
+
+<FONT size="+2">PRINT@ (スレーブ)</FONT>
+PRINT@ ; [データ] (,データ ...) [@]
+
+<FONT size="+2">RBYTE (マスタ)</FONT>
+RBYTE [コマンド] (, [コマンド] ...); [数値変数] (,[数値変数] ...) [@]
+マルチラインメッセージを送出後、バイナリデータを受信
+コマンドは0 - 255 (&H00 - &HFF)までのバイナリHEXで指定
+@ : EOIを有効
+(類似: WBYTE)
+
+<FONT size="+2">RBYTE (スレーブ)</FONT>
+RBYTE ; [数値変数] (,[数値変数] ...) [@]
+
+<FONT size="+2">SRQ (マスタ)</FONT>
+SRQ [ON/OFF/STOP]
+サービスリクエスト(SRQ)の受信による割込の許可・禁止・停止
+例 SRQ ON
+
+<FONT size="+2">WBYTE (マスタ)</FONT>
+WBYTE [コマンド] (, [コマンド] ...); [データ] (,[データ] ...) [@]
+マルチラインメッセージを送出後、バイナリデータを送出
+コマンドは0 - 255 (&H00 - &HFF)までのバイナリHEXで指定
+@ : EOIを有効
+
+<FONT size="+2">WBYTE (スレーブ)</FONT>
+WBYTE ; [データ] (,[データ] ...) [@]
+
+<FONT size="+3">★関数</FONT>
+
+<FONT size="+2">IEEE</FONT>
+IEEE(n)
+GP-IBの状態を調べる関数。n=0-2,4-7
+
+IEEE(0) : CMD DELIMの設定値
+IEEE(1) : 初期状態
+MSBより
+7 - 6 : INT
+5 : 0=マスタ, 1=スレーブ
+4 - 0 : マイアドレス
+
+※本体8連DIPで設定した値をそのまま表示している
+SW1
+1 - 2 : INT; ON-ON:0, ON-OFF:4, OFF-ON:5 OFF-OFF:6
+3 : 1=スレーブ 0=マスタ
+4 - 8 : 4をMSB, 8をLSBとするマイアドレス ON=0, OFF=1
+
+ちなみにABCジャンパはABショートでROM有効、BCショートでROM無効
+
+※29Kは10連DIPで-19の8連DIP1-8は29Kの10連DIP3-10に読み替える。
+1 - 2 : DMA; ON-ON:0 OFF-OFF:3 (ON-OFF, OFF-ONは不明)
+
+
+IEEE(2) : トーカ・リスナの状態および受信したインタフェースメッセージ
+MSBより
+7 : 1=LLO受信
+6 : 1=GTL受信
+5 : 1=DCL or SDC受信
+4 : 1=GET受信
+3 : 1=EOI受信
+2 : 1=SPE受信
+1 : 1=リスナがアドレスされている
+0 : 1=トーカがアドレスされている
+
+IEEE(4) : シリアルポール時にSRQ送出中の装置のデバイスステータス
+IEEE(5) : シリアルポール時にSRQ送出中の装置のトーカアドレス
+IEEE(6) : シリアルポール中に応答しない装置があった場合、そのトーカアドレス
+IEEE(7) : パラレルポールを行い、得たデータバイト
+
+<FONT size="+2">STATUS</FONT>
+スレーブモード下でシリアルポールが行われたときに送出するデバイスステータス
+MSBより、
+7 : 拡張用汎用ビット
+6 : 1=SRQ発信中; 
+ISET SRQによりセット、シリアルポールを受けるとリセット
+5 : 0=異常状態
+4 : 0=動作中
+3 - 0: 汎用ビット
+</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

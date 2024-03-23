@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>640KB FDDで1D/2Dを書く</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>640KB FDDで1D/2Dを書く</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>独自研究の内容を多く含みます</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>★概要
+MS-DOS 2.0より、640KB FDD上で1D/2Dフォーマットの
+FDを読む機能が搭載されています。
+種類としては8セクタ品と9セクタ品が更にあるため、計4種です。
+システムディスク形式の320KBディスク(256セクタ)は非対応です。
+・1D/8 : 160KB
+・1D/9 : 180KB
+・2D/8 : 320KB
+・2D/9 : 360KB
+
+★1D/2Dを書く
+いずれかの方法で書く事ができます。
+
+1. 2DWRITE.LZH を適用する
+現在入手経路がありません
+
+2. IO.SYSを書き換える
+DISK.TUTという文書をご参照ください。
+
+3.パッチソフトを作る
+DISK.TUTという文書をご参照ください。
+
+[DISK.TUT]
+https://www.vector.co.jp/soft/data/hardware/se016321.html
+
+また、<A href="../soft/index.htm">パッチソフトはコンパイル済のものを用意</A>しています。 
+(2DW.LZH > 2DW.COM)
+起動毎に実行する必要があるため、
+AUTOEXECに登録しておくと便利です。
+
+またIO.SYSは一度書き換えてしまえばパッチソフト不要です。
+
+
+フォーマットされたディスクにファイルを書くだけであれば、
+これだけで読み書きが可能です。
+
+尚、FORMATとDISKCOPYは非対応です。
+
+★フォーマットをする
+確証がないため妄想ですが、FORMATでは
+ドライブレターに対応するDA/UAを読み込んでおり、
+そこからディスクの種別を判断しています。
+FDDに関連するDAは以下の4種です。
+9h -> 1MB FDD (1.2MB or 250KB)
+7h -> 640KB FDD (2DD/8 or 2DD/9)
+5h -> 320KB FDD (2D/8 or 2D/9)
+3h -> 1.44MB FDD
+
+640KB I/FはDA=7hなので、FORMATは640KB or 720KBを
+決め打ちしてフォーマットします。
+
+DA=5hに書き換えると320KB FDとしてフォーマットしようとしますが
+こちらは320KB FDD (PC-80S31など)を制御しようとして失敗します。
+
+残念ながら純正のFORMATは使用できないため、
+別途フォーマッタを用意する必要があります。
+
+・既存のフォーマッタ
+エコロジーでは320KBと360KBのフォーマットが可能です。
+しかも起動可能なIPL付でフォーマットしてくれます。
+
+</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
