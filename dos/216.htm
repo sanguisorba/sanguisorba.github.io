@@ -25,11 +25,11 @@
 <TABLE width="512" border="0">
   <TBODY>
     <TR>
-      <TD align="left"><PRE>MS-DOS 2.0(PS98-121/122)と3.1(PS98-125)ではN<sub>88</sub>/MS-DOSファイルコンバータが
+      <TD align="left"><PRE>MS-DOS 2.0(PS98-121/122)と3.1(PS98-125)ではファイルコンバータが
 添付されておらず、別売となっていた。
-1.0というバージョンだが、PS98-212が最古でPS98-216はそのアップデート版。
-PS98-011添付のv2.0ではMS-DOSのバージョンチェックがかかっているが、こちらは
-どのMS-DOSのバージョンでも実行可能。
+PS98-216はPS98-212のアップデート版だがバージョンはどちらも1.0
+PS98-011添付の2.0ではDOSのバージョンチェックがかかっているが
+こちらはどのMS-DOSのバージョンでも実行可能。
 
 ★ファイルリスト★
 FILECONV EXE    31648  84-11-26  18:39
@@ -39,7 +39,72 @@ FILECONV EXE    31648  84-11-26  18:39
   </TBODY>
 </TABLE>
 <IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
-<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>FILECONVの使い方
+
+★非互換な中間コード
+以下の命令が含まれる時はアスキーセーブ必須
+
+ BIN : N88   -> MS-DOS
+FF C1: DSKI$ -> ENVIRON$
+97   : DSKO$ -> ENVIRON
+B6   : MON   -> CHILD
+B4   : MOTOR -> SCROLL(*)
+FF 83: PEN   -> MOUSE
+DB   : TERM  -> SYSTEM
+FF A3: FPOS  -> SEGPTR
+
+* 1.0(PS98-216, -311, -312, -313)では非対応
+　2.0以降で使用可能
+
+★KI/KOコード変換
+漢字インコード・漢字アウトコードはMS-DOSでは不要。
+そのため、KI/KOは通常削除で大丈夫。
+データのアドレスがずれると困る場合はFFFFを選択する
+
+★JISコード変換
+・シーケンシャルデータファイルとランダムデータファイルは
+アスキー形式として扱われるため、JIS変換ができる
+
+・AUTO変換モードではJIS変換が行われない。
+
+・JISコード変換はバイナリ形式では変換されない
+JISコード変換はアスキーセーブの時のみ有効。
+
+★ランダムデータファイルにおけるJIS変換
+文字データと数値データがランダムに配置されたデータで、
+文字データと数値データのアドレスをFIELDで指定する
+Cが文字、Nが数値でCxx,Nxx,Cxx,Nxx ... のように記述。
+KIKOはFFFF固定。
+
+★バイナリファイルの変換
+ランダムデータファイルかの質問ではNOを選択。
+JIS変換もNOを選択して変換する。
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>MS-DOS 3.1(PS98-127)添付のマニュアルとの差異
+・ページ数同じ。わずかに表記が異なるだけでほぼ縮尺・拡大コピー
+・1.0には256KB(8インチ片面単密度)FDのサポートが書いてあるが、
+　2.0にはその記載がない
+・P7 中間コード表 0B4が1.0ではMOTOR→未定義となっている
+・P24上段　漢字コード変換の指定例が違うが、
+　書いてある内容は同じ
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG src="fileconv2.gif" width="270" height="384" border="0"><BR>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
 <A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
 </BODY>
 </HTML>

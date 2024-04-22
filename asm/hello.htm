@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MASM:HELLO WORLD</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>MASMでHELLO WORLD</H2>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>MASMでHELLO WORLDを表示するプログラムを作りました。
+
+★HELLO.ASM★
+	ASSUME	CS:CODE,DS:CODE
+CODE	SEGMENT
+
+	ORG	100H
+
+START:	MOV	DX,OFFSET MSG
+	MOV	AH,9
+	INT	21H
+	
+	INT	20H
+
+MSG	DB	'HELLO WORLD!$'
+
+CODE	ENDS
+	END	START
+★コンパイル方法★
+1.MASMでコンパイルしてOBJを作成します。
+e.g.)MASM HELLO
+2.LINKでOBJをEXEに変換します
+e.g.)LINK HELLO
+3.EXE2BINでEXEをCOMに変換します
+e.g.)EXE2BIN HELLO.EXE HELLO.COM
+4.HELLO.COMを実行します
+
+★スクリーンに文字列を出力する★
+INT 21H - Function 09H
+ファンクション09Hではスクリーンに文字列を出力します
+DS:DXには出力する文字列のオフセットを入れます。
+このシステムコールでは$が終端記号であるため、
+必ず最後が$で終わる必要があります。
+また、13,10は改行コードで、例えば、
+
+MSG	DB	'HELLO',13,10,'WORLD$'
+
+という文字列では、
+
+HELLO
+WORLD
+
+というように改行して出力します。
+
+★プログラム終了の作法★
+プログラムを終了させる方法は３つあります。
+1.INT 20Hを使用する (v1.25)
+	INT	20H
+2.Function 00Hを使用する (v1.25)
+	MOV	AH,0
+	INT	21H
+3.Function 4CHを使用する (推奨)
+	MOV	AH,4CH
+	INT	21H
+
+Function 00HはINT 20Hを呼び出す割込でINT 20Hと同じです。
+MS-DOS1.25ではFunction 4CHに対応していないため
+INT 20HまたはFunction 00Hを使用します。
+
+一方、2.0以降ではFunction 4CHによる終了が推奨されています。
+
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
