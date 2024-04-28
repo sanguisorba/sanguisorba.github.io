@@ -1,0 +1,146 @@
+|----------------------------------------------------------------------
+|	ＰＡＣＫＩＮＧ．ＬＳＴ
+|
+|	マイクロソフト　マクロアセンブラ　バージョン５．１Ａ
+|	パッケージリスト
+|
+|----------------------------------------------------------------------
+
+当パッケージに含まれるファイル構成は以下のようになっています。
+
+※　以下、特にことわりのない限り「ＭＳ－ＤＯＳモード」は、ＭＳ　ＯＳ／２の
+　ＭＳ－ＤＯＳモード，ＭＳ－ＤＯＳ３．×の両方を表します。
+
+
+フロッピィディスク	１ＭＢフロッピィディスクの場合　　　・・・３枚
+　　　　　　　　　　　　６４０ＫＢフロッピィディスクの場合　・・・５枚
+
+	各フロッピィディスクに含まれているファイルは以下の通りです。
+	［注］TEXT	テキストファイル
+	      REAL	ＭＳ－ＤＯＳモードで動作します。
+	      PROTECT	ＭＳ　ＯＳ／２モードで動作します。
+	      BOUND	ＭＳ－ＤＯＳモードＭＳ　ＯＳ／２モードで動作します。
+	      *		ＭＳ　ＯＳ／２モードでのみ使用するファイルです。
+　　　　　　　　　　　　ＭＳ－ＤＯＳモードのみでお使いになる場合には必要有り
+　　　　　　　　　　　　ません。
+
+
+［１ＭＢフロッピィディスク］
+
+ＤＩＳＫ１：マクロアセンブラ１
+
+PACKING.LST	TEXT	本製品のﾊﾟｯｹｰｼﾞﾘｽﾄ
+README.DOC	TEXT	本製品の補足説明
+SETUP.DOC       TEXT    セットアップの方法についての説明
+DOS.INC		TEXT	DOSｺｰﾙのﾏｸﾛ
+MASM.EXE	REAL	ﾏｸﾛｱｾﾝﾌﾞﾗ
+CREF.EXE	BOUND	ｸﾛｽﾘﾌｧﾚﾝｽ･ﾕｰﾃｨﾘﾃｨ
+ERROUT.EXE	REAL	STDERR ﾘﾀﾞｲﾚｸｼｮﾝ･ﾕｰﾃｨﾘﾃｨ
+EXEHDR.EXE	BOUND	EXEﾌｧｲﾙのﾍｯﾀﾞｰ表示ﾕｰﾃｨﾘﾃｨ
+EXEMOD.EXE	REAL	EXEﾌｧｲﾙのﾍｯﾀﾞｰ変更ﾕｰﾃｨﾘﾃｨ
+EXEPACK.EXE	REAL	EXEﾌｧｲﾙのﾍｯﾀﾞｰ圧縮ﾕｰﾃｨﾘﾃｨ
+LIB.EXE 	BOUND	ﾗｲﾌﾞﾗﾘ ﾏﾈｰｼﾞｬ
+LINK.EXE	REAL	ﾘﾝｶ
+MAKE.EXE	BOUND	ﾌﾟﾛｸﾞﾗﾑ保守ﾕｰﾃｨﾘﾃｨ
+SHOW.EXE	BOUND	ﾃｷｽﾄ表示ﾕｰﾃｨﾘﾃｨ(ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ)
+
+ＭＩＸＥＤ		<ﾃﾞｨﾚｸﾄﾘ>
+	言語とのインターフェース
+MIXED.INC	TEXT	ｲﾝﾀｰﾌｪｰｽ用ﾏｸﾛ
+CAMAIN.C	TEXT	C ﾒｲﾝﾌﾟﾛｸﾞﾗﾑ ｻﾝﾌﾟﾙ
+CA.ASM		TEXT	Cとのｲﾝﾀｰﾌｪｰｽ ｻﾝﾌﾟﾙ
+POWER2.ASM	TEXT	ｱｾﾝﾌﾞﾗ ｻﾝﾌﾟﾙ
+
+ＥＸＴ	<ﾃﾞｨﾚｸﾄﾘ>
+	機能拡張用ﾌｧｲﾙ
+EXT.H		TEXT	Support file for Microsoft Editor extensions
+EXTHDR.OBJ	
+EXTHDRP.OBJ    *
+SKEL.C		TEXT
+SKEL.DEF       *TEXT
+
+ＩＮＩ	<ﾃﾞｨﾚｸﾄﾘ>
+	ｷｰｱｻｲﾝ初期設定用ﾌｧｲﾙ
+QUICK.INI	TEXT	Quick-product configuration file for Microsoft Editor
+BRIEF.INI	TEXT	BRIEF(R) initialization file for Microsoft Editor
+EPSILON.INI 	TEXT	Epsilon(TM) configuration file for Microsoft Editor
+WS.DLL	       *	MS OS/2 mode extension file
+WS.ZXT			MS-DOS mode extension file
+
+ＳＯＵＲＣＥ	<ﾃﾞｨﾚｸﾄﾘ>
+	サンプル　ＭＡＳＭソースファイル
+MAKESHOW.BAT	TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ用ﾊﾞｯﾁファイル(MS-DOSﾓｰﾄﾞ)
+MAKESHOW.CMD   *TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ用ﾊﾞｯﾁファイル(MS OS/2ﾓｰﾄﾞ)
+SHOW		TEXT	MAKESHOWで使用(MAKE.EXE用ﾌｧｲﾙ)
+PAGERR.ASM	TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(MS-DOSﾓｰﾄﾞ)
+PAGERP.ASM     *TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(MS OS/2ﾓｰﾄﾞ)
+SHOWR.ASM	TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(MS-DOSﾓｰﾄﾞ)
+SHOWP.ASM      *TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(MS OS/2ﾓｰﾄﾞ)
+SHOWS.DEF      *TEXT	ﾓｼﾞｭｰﾙ定義ﾌｧｲﾙ
+
+
+ＤＩＳＫ２：マクロアセンブラ２
+
+ＣＶ		<ﾃﾞｨﾚｸﾄﾘ>
+	コードビュー
+CODEVIEW.DOC    TEXT    ｺｰﾄﾞﾋﾞｭｰ&ﾕｰﾃｨﾘﾃｨ ﾕｰｻﾞｰｽﾞｶﾞｲﾄﾞ補足説明
+CV.EXE		REAL	ｺｰﾄﾞﾋﾞｭｰ（ﾉｰﾏﾙﾓｰﾄﾞ用）
+CVH.EXE		REAL	ｺｰﾄﾞﾋﾞｭｰ（ﾊｲﾚｿﾞﾘｭｰｼｮﾝﾓｰﾄﾞ用,N5200ｼﾘｰｽﾞ用）
+CV.HLP			ｺｰﾄﾞﾋﾞｭｰ用ﾍﾙﾌﾟﾌｧｲﾙ
+CVPACK.EXE	BOUND	ｺｰﾄﾞﾋﾞｭｰ用付帯情報の除去ﾕｰﾃｨﾘﾃｨ
+SAMPLE.BAT      TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ起動用ﾊﾞｯﾁﾌｧｲﾙ
+ADAPT.BAT       TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ内部処理用ﾊﾞｯﾁﾌｧｲﾙ
+DEMOB.BAT       TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ内部処理用ﾊﾞｯﾁﾌｧｲﾙ
+M_AUTO.CV		Tutorial script file
+Q_AUTO.CV		Tutorial script file
+U_AUTO.CV		Tutorial script file
+W_AUTO.CV		Tutorial script file
+E_AUTO.CV		Tutorial script file
+S1.@@@          TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ ﾒｯｾｰｼﾞﾌｧｲﾙ
+S3.@@@          TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ ﾒｯｾｰｼﾞﾌｧｲﾙ
+S9.@@@          TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ ﾒｯｾｰｼﾞﾌｧｲﾙ
+S12.@@@         TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ ﾒｯｾｰｼﾞﾌｧｲﾙ
+S13.@@@         TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ ﾒｯｾｰｼﾞﾌｧｲﾙ
+S14.@@@         TEXT    ｺｰﾄﾞﾋﾞｭｰﾁｭｰﾄﾘｱﾙ ﾒｯｾｰｼﾞﾌｧｲﾙ
+SHOWR.ASM	TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(MS-DOSﾓｰﾄﾞ)
+PAGEERR.ASM	TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(MS-DOSﾓｰﾄﾞ)
+SHOWR.EXE	REAL	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ (MS-DOSﾓｰﾄﾞ)
+RESPOND.COM	REAL	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ (MS-DOSﾓｰﾄﾞ)
+MOUSE.COM	REAL	MS-DOS ﾓｰﾄﾞ用ﾏｳｽﾄﾞﾗｲﾊﾞ（常駐形式：ﾉｰﾏﾙﾓｰﾄﾞ用）
+MOUSEH.COM	REAL	MS-DOS ﾓｰﾄﾞ用ﾏｳｽﾄﾞﾗｲﾊﾞ
+                        （常駐形式：ﾊｲﾚｿﾞﾘｭｰｼｮﾝﾓｰﾄﾞ用,N5200ｼﾘｰｽﾞ用）
+
+ＭＥ		<ﾃﾞｨﾚｸﾄﾘ>
+	マイクロソフト・エディタ
+M.EXE		REAL	ﾏｲｸﾛｿﾌﾄ　ｴﾃﾞｨﾀ
+RM.EXE		BOUND	File-removing utility
+EXP.EXE 	BOUND	Expunge utility (used with RM.EXE)
+UNDEL.EXE	BOUND	File-recovery utility
+MEGREP.EXE	BOUND	文字検索ﾕｰﾃｨﾘﾃｨ
+CALLTREE.EXE	BOUND
+ECH.EXE 	BOUND	文字出力ﾕｰﾃｨﾘﾃｨ（ﾏｲｸﾛｿﾌﾄ･ｴﾃﾞｨﾀで使用）
+
+
+ＤＩＳＫ３：マクロアセンブラ３
+
+MASM.EXE       *BOUND	ﾏｸﾛｱｾﾝﾌﾞﾗ
+ILINK.EXE      *BOUND	ｲﾝｸﾘﾒﾝﾀﾙ･ﾘﾝｶ
+EXEC.EXE       *REAL	ILINK.EXEが使用します
+IMPLIB.EXE     *BOUND	ｲﾝﾎﾟｰﾄ ﾗｲﾌﾞﾗﾘ ﾏﾈｰｼﾞｬ
+LINK.EXE       *BOUND	ﾘﾝｶ
+CVP.EXE	       *PROTECT	ｺｰﾄﾞﾋﾞｭｰ（ﾉｰﾏﾙﾓｰﾄﾞ用）
+CVPH.EXE       *PROTECT	ｺｰﾄﾞﾋﾞｭｰ（ﾊｲﾚｿﾞﾘｭｰｼｮﾝﾓｰﾄﾞ用）
+CVP.HLP	       *	ｺｰﾄﾞﾋﾞｭｰ用ﾍﾙﾌﾟﾌｧｲﾙ
+MEP.EXE	       *PROTECT	ﾏｲｸﾛｿﾌﾄ　ｴﾃﾞｨﾀ
+APILMR.OBJ     * 	64K stack object file (for use with BIND)
+DOSCALLS.LIB   * 	DOS CALL Library
+
+ＩＮＣＬＵＤＥ		<ﾃﾞｨﾚｸﾄﾘ>
+	ＭＳ　ＯＳ／２モード用インクルードファイル
+
+OS2.INC 	*TEXT	Root include file for OS/2 calls
+BSE.INC 	*TEXT	Base include file for OS/2 calls
+BSEDOS.INC	*TEXT	Base include file for DOSCALLS
+BSEERR.INC	*TEST	Base include file for errors
+BSESUB.INC	*TEXT	Base include file for video, keyboard, & mouse
+OS2DEF.INC	*TEXT	OS/2 common definitions

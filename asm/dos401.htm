@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MS-DOS 4.0のソースコード</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>MS-DOS 4.01のソースコードにある<BR>MASM 5.1とMS-C 5.1</H2>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>2024年4月、MT-DOS 4.0のbeta版とMS-DOS 4.01のソースコードが公開。
+そのアーカイブにはビルド用にMASM 5.1とMS-C 5.1も含まれていた。
+
+というわけで、こいつを使い倒そうという企画です。
+
+★概要
+
+v4.0/TOOLS/ の中にそれらがあります。
+
+★何が無いか
+
+製品版と比較して、無いものを抽出しました。
+DOSコールライブラリやサンプルプログラム等は除いています。
+
+[MS-C 5.1 または MASM 5.1にあるもの]
+・OS/2用インクルードファイル (MASMにもあります)
+・Codeview デバッガ
+・M エディタと関連ユーティリティ
+・OS/2用ユーティリティ
+・EXEHDR, ERROUT
+
+[MS-C 5.1にあるもの]
+・OS/2用コンパイラ・ライブラリ他
+・87ライブラリ (nLIBF7.LIB, 87.LIB)
+・Altmathライブラリ (nLIBFA.LIB)
+・EMOEM.ASM 
+
+[MASM 5.1にあるもの]
+・OS/2用MASM, LINK他
+・CREF
+
+★MASM, MS-Cのコンポーネントでないもの
+TOOLSフォルダにはMASM, MSC以外のツールも含まれています。
+
+[著作権表示にIBMとあるもの]
+・ASC2HLP
+・DBOF
+
+[DOSの一部と思われるもの]
+・ATTRIB
+・EXE2BIN ←よく使う
+
+[DOSのビルド用と思われるもの]
+・COMPRESS ←よくわからない
+・EXEFIX ←EXEMODと似ている
+・BUILDIDX, BUILDMSG
+・MENUBLD, NOSRVBLD
+
+★PC-9800シリーズで使う際の注意点
+
+MS-Cのライブラリ (nLIBCE.LIB)はPC/AT機用に作られており、
+PC-9800シリーズには対応していません。
+残念ながらnLIBCE.LIBは動かないので捨ててください。
+
+nLIBCE.LIBは以下のライブラリが組み合わさっており、
+セットアップ時にユーザがリンクして作る仕様になっています。
+
+nLIBCE = nLIBCR + LIBH + EM + nLIBFP (順番が大事)
+
+幸いな事に、4つ全てがLIBフォルダ内に収録されています！
+
+このうち差し替えが必要なモジュールはEM.LIBです。
+
+EM.LIBはEM.OBJとEMOEM.OBJで構成されたライブラリで、
+
+改造しなければならないオブジェクトはEMOEM.OBJです。
+
+★EMOEMについて
+
+端的に説明すると、8087の割込ハンドラが定義されています。
+
+このEMOEMは以下の製品で使用されており、ユーザが変えられるよう
+EMOEM.ASMが添付されています。
+・Microsoft C       3.0以降
+・Microsoft FORTRAN 3.3以降
+・Microsoft Pascal  3.3以降
+
+以下の製品でも使用されているが、Ctrl-Cの仕様が違うらしい。
+詳しく検証していないのでわかりません。
+・Microsoft Quick Basic 4.2 / 4.5
+・Microsoft Quick C 1.1 / 2.0
+・Microsoft BASCOM
+
+ちなみにQB4.2, QB4.5, QC1.1, QC2.0のEMOEMは4つ全て同じ内容でした。
+
+-----
+
+EMOEMモジュールにはi8259のI/OアドレスやEOIコマンドが記載されたテーブルが
+ありますが、PC/AT用のEMOEMでは一部処理が省略されています。
+
+なので、バイナリエディタでテーブルを書き換える技を使うことはできず、
+どこかからEMOEMを調達してくる必要があります。
+
+以下、どこかからEMOEM.ASMを調達できた人向け。
+
+PC98用として発売されて「いない」製品に付属のEMOEMには以下の行があります。
+
+;NEC APC3 and PC-9801  (OEM number returned by NEC MS-DOS's is different)
+;oem	 oeminfo <000h,016h,000h,008h,066h,000h,067h,00Ah,0BFh,002h,07Fh>
+
+ここのコメントアウトを外すと確かにPC-9801用になるのですが、このテーブルは
+8087用のテーブルで、80287以降の環境では使用する事ができません。
+
+80287以降の環境では次のテーブルを使用します。
+
+oem	oeminfo <000h,010h,000h,008h,066h,000h,067h,00Ah,0FEh,002h,07Fh>
+
+★EMOEMを適用する
+1. EMOEMをコンパイルする。
+MASM -DOEM -R EMOEM.ASM　など
+古い製品では　MASM EMOEM/R　など
+EMOEMのコメントに書いてあると思います。
+
+2.ライブラリのEMOEMを差し替える
+LIB EM-+EMOEM,, など
+
+3.ライブラリをつくる
+LIB CLIBCR.LIB+LIBH.LIB+EM.LIB+CLIBFP.LIB,,CLIBCE.LIB　など
+必ずこの順番にライブラリを指定する
+
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
