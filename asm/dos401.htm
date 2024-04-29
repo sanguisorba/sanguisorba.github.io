@@ -71,15 +71,14 @@ PC-9800シリーズには対応していません。
 nLIBCE.LIBは以下のライブラリが組み合わさっており、
 セットアップ時にユーザがリンクして作る仕様になっています。
 
-nLIBCE = nLIBCR + LIBH + EM + nLIBFP (順番が大事)
+nLIBCE = nLIBCR + LIBH + EM + nLIBFP
+（幸いな事に4つ全てがLIBフォルダ内に収録されています）
 
-幸いな事に、4つ全てがLIBフォルダ内に収録されています！
-
-このうち差し替えが必要なモジュールはEM.LIBです。
+このうち差し替えが必要なライブラリはEM.LIBです。
 
 EM.LIBはEM.OBJとEMOEM.OBJで構成されたライブラリで、
 
-改造しなければならないオブジェクトはEMOEM.OBJです。
+EMOEM.OBJを差し替える必要があります。
 
 ★EMOEMについて
 
@@ -96,7 +95,8 @@ EMOEM.ASMが添付されています。
 ・Microsoft Quick Basic 4.2 / 4.5 (BCOM4xE.LIB)
 ・Microsoft Quick C 1.1 / 2.0 (EM.LIB)
 
-ちなみにQB4.2, QB4.5, QC1.1, QC2.0のEMOEMは4つ全て同じ内容でした。
+QB4.2, QB4.5, QC1.1, QC2.0のEMOEMは4つ全て同じ内容でした。
+Quick系のEMOEMは8087/80287両用です。
 (逆アセンブルした上で使用上問題ない事を確認済)
 
 -----
@@ -107,17 +107,14 @@ EMOEMモジュールにはi8259のI/OアドレスやEOIコマンドが記載さ�
 なので、バイナリエディタでテーブルを書き換える技を使うことはできず、
 どこかからEMOEMを調達してくる必要があります。
 
-現実的な手段としてはPC98用のQuick CまたはQuick Basicから抽出するか、
-どこかからEMOEM.ASMを入手してカスタマイズするかのどちらかだと思います。
+1. PC98用に販売されたMS-C, MS-FORTRAN, MS-PascalのEMOEMを使う
+   ※PC98用EMOEMが添付されている。ただし中古では滅多に見かけない。
 
-前者は LIB EM*EMOEM または LIB BCOM4xE*EMOEM で抽出完了です。
-尚、Quick系のEMOEMは8087/80287両用です。
+2. 入手しやすいPC98用Quick CまたはQuick Basicから抽出する
+   ※LIB EM*EMOEM または LIB BCOM4xE*EMOEM で抽出できます
 
-以下はEMOEM.ASMのカスタマイズ方法について。
-
-★他機種用EMOEM.ASMをカスタマイズする
-
-PC98用として発売されて「いない」製品に付属のEMOEMを使用する場合の手順
+3. どこかからEMOEM.ASMを入手してカスタマイズする
+   
 
 EMOEM.ASM内に以下の行があると思います。
 
@@ -132,12 +129,12 @@ EMOEM.ASM内に以下の行があると思います。
 oem	oeminfo <000h,010h,000h,008h,060h,000h,067h,00Ah,0FEh,002h,07Fh>
 
 ★EMOEMを適用する
-1. EMOEMをコンパイルする。
+1. EMOEM.ASMをコンパイルする。
 MASM -DOEM -R EMOEM.ASM　など
 古い製品では　MASM EMOEM/R　など
 EMOEMのコメントに書いてあると思います。
 
-2.ライブラリのEMOEMを差し替える
+2.ライブラリのEMOEM.OBJを差し替える
 LIB EM-+EMOEM,, など
 
 3.ライブラリをつくる
