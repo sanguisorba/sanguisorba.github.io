@@ -91,13 +91,13 @@ EMOEM.ASMが添付されています。
 ・Microsoft FORTRAN 3.3以降
 ・Microsoft Pascal  3.3以降
 
-以下の製品でも使用されているが、Ctrl-Cの仕様が違うらしい。
-詳しく検証していないのでわかりません。
-・Microsoft Quick Basic 4.2 / 4.5
-・Microsoft Quick C 1.1 / 2.0
-・Microsoft BASCOM
+以下の製品ではEMOEM.ASMが添付されていませんが、
+変更済のEMOEMが組み込まれています。
+・Microsoft Quick Basic 4.2 / 4.5 (BCOM4xE.LIB)
+・Microsoft Quick C 1.1 / 2.0 (EM.LIB)
 
 ちなみにQB4.2, QB4.5, QC1.1, QC2.0のEMOEMは4つ全て同じ内容でした。
+(逆アセンブルした上で使用上問題ない事を確認済)
 
 -----
 
@@ -107,19 +107,29 @@ EMOEMモジュールにはi8259のI/OアドレスやEOIコマンドが記載さ�
 なので、バイナリエディタでテーブルを書き換える技を使うことはできず、
 どこかからEMOEMを調達してくる必要があります。
 
-以下、どこかからEMOEM.ASMを調達できた人向け。
+現実的な手段としてはPC98用のQuick CまたはQuick Basicから抽出するか、
+どこかからEMOEM.ASMを入手してカスタマイズするかのどちらかだと思います。
 
-PC98用として発売されて「いない」製品に付属のEMOEMには以下の行があります。
+前者は LIB EM*EMOEM または LIB BCOM4xE*EMOEM で抽出完了です。
+尚、Quick系のEMOEMは8087/80287両用です。
+
+以下はEMOEM.ASMのカスタマイズ方法について。
+
+★他機種用EMOEM.ASMをカスタマイズする
+
+PC98用として発売されて「いない」製品に付属のEMOEMを使用する場合の手順
+
+EMOEM.ASM内に以下の行があると思います。
 
 ;NEC APC3 and PC-9801  (OEM number returned by NEC MS-DOS's is different)
 ;oem	 oeminfo <000h,016h,000h,008h,066h,000h,067h,00Ah,0BFh,002h,07Fh>
 
-ここのコメントアウトを外すと確かにPC-9801用になるのですが、このテーブルは
-8087用のテーブルで、80287以降の環境では使用する事ができません。
+ここのコメントアウトを外してコンパイルをするとPC-9801用になります。
+ただし8087用のテーブルで、80287以降の環境では使用する事ができません。
 
 80287以降の環境では次のテーブルを使用します。
 
-oem	oeminfo <000h,010h,000h,008h,066h,000h,067h,00Ah,0FEh,002h,07Fh>
+oem	oeminfo <000h,010h,000h,008h,060h,000h,067h,00Ah,0FEh,002h,07Fh>
 
 ★EMOEMを適用する
 1. EMOEMをコンパイルする。
