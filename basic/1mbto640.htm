@@ -4,11 +4,11 @@
 <META http-equiv="Content-Type" content="text/html">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>2HDなDISK-BASICを2DDに移植する</TITLE>
+<TITLE>2HDなDISK-BASICを2DD/2Dに移植する</TITLE>
 </HEAD>
 <BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
 <CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
-<H2>2HDなDISK-BASICを2DDに移植する</H2>
+<H2>2HDなDISK-BASICを2DD/2Dに移植する</H2>
 <BR>
 <TABLE width="512" border="0">
   <TBODY>
@@ -32,8 +32,12 @@ DISK-BASICの制約として、起動可能なディスクが
 
 ちなみに640KB -> 1MBもできる
 
+更に1MB -> 320KB(2D)にもできる
+※ただしFATがトラック18サイド1にあるため、そこまでに
+DISK-CODEがおさまる必要アリ。
 
-★できるやつとできないやつ
+
+★1MB <-> 640KBができるディスク
 
 Ver 2.0以降の640KB または 1MBなDISK-BASICが対象です
 ※品番とバージョンの関係はこちらも参照
@@ -50,6 +54,20 @@ Ver 1.0, PC-9884はそもそも2DD未対応です。
 未対応なPC-9884を2DD仕様にするのはしんどそうです。
 
 尚、EPSONのDISK BASICは未検証です。
+
+★1MB <-> 320KBができるディスク
+
+Ver 3.0以降は無改変で移植できると思いますが、
+DISK CODEのサイズがFAT領域(トラック18サイド1)を超えると×
+起動はできるがファイルの読み書きができなくなる
+
+Ver 2.0,PC-98H39-4Wは無改変で移植できます。
+PC-98H87はIPLの改変が必要です。内容は1MBに同じ。
+
+Ver 1.0, PC-9884とPC-9835-2WはIPLの改変が必要ですが、
+DISK-CODEは無改変で移植できます。
+
+
 
 ★やり方
 
@@ -79,9 +97,9 @@ https://www.vector.co.jp/soft/dos/util/se000577.html
 2. FATを見てDISK-CODEのサイズを概算
 
    FATの位置:
-   1MBならトラック35サイド0セクタ24-26
-   2DDならトラック40サイド0セクタ14-16
-   
+     1MB:トラック35サイド0セクタ24-26
+   640KB:トラック40サイド0セクタ14-16
+   320KB:トラック18サイド1セクタ14-16
    FDS > Sectorで見ると楽
 
    ここではFEが何連続しているかを数える
@@ -91,8 +109,9 @@ https://www.vector.co.jp/soft/dos/util/se000577.html
    かを大まかに知ることができる
 
 3. DISK-CODEのバイナリ抽出
-   1MBならトラック1サイド0セクタ1から
-   2DDならトラック0サイド0セクタ3から
+     1MB:トラック1サイド0セクタ1から
+   640KB:トラック0サイド0セクタ3から
+   320KB:トラック0サイド0セクタ3から
    2.で調べたサイドまで全抽出
 
 以下は移植先のディスクで
@@ -100,12 +119,14 @@ https://www.vector.co.jp/soft/dos/util/se000577.html
 4. IPLを書く 先頭から512bytes
 
 5. DISK-CODEのバイナリを書く
-   1MBならトラック1サイド0セクタ1から
-   2DDならトラック0サイド0セクタ3から
+     1MB:トラック1サイド0セクタ1から
+   640KB:トラック0サイド0セクタ3から
+   320KB:トラック0サイド0セクタ3から
 
 6. FATを編集
-   1MBならトラック35サイド0セクタ24-26
-   2DDならトラック40サイド0セクタ14-16
+     1MB:トラック35サイド0セクタ24-26
+   640KB:トラック40サイド0セクタ14-16
+   320KB:トラック18サイド1セクタ14-16
 
    2.で調べたサイド数をもとに計算し、
    DISK-CODEのあるサイドをFEとしてマークする
@@ -113,8 +134,9 @@ https://www.vector.co.jp/soft/dos/util/se000577.html
    1MBではトラック1サイド0からが
    DISK-CODE領域なので開始サイドに注意
    1FAT = 1サイドあたりの容量：
-   1MB: 256bytes ×26
-   2DD: 256bytes ×16
+     1MB: 256bytes ×26
+   640KB: 256bytes ×16
+   320KB: 256bytes ×16
 
    FDS > SectorでRキーを連打して
    どこまであるか見たほうがはやいと思う
@@ -194,6 +216,36 @@ IPLを変える必要アリ。
 
 1FC0:0049 80FA<font color="red">1B</font>         CMP	DL,<font color="red">1B</font> 		;READ DATA ｻﾌﾞﾙｰﾁﾝ　ｴﾝﾄﾘ
 1FC0:004C 7209           JB	0057 		;ｾｸﾀNo.><font color="red">26</font>？
+
+★PC-9835 / PC-9884間の移植について
+
+改変内容は上と全く同じです
+
+
+・PC-9835-2W (320KB)
+
+1FC0:0019 B501           MOV	CH,01 		;ｾｸﾀ長(N=1 256ﾊﾞｲﾄ)
+1FC0:001B B1<font color="red">00</font>           MOV	CL,<font color="red">00</font> 		;ｼﾘﾝﾀﾞNo.<font color="red">0</font>
+1FC0:001D B600           MOV	DH,00 		;ﾍｯﾄﾞ No.0
+1FC0:001F B2<font color="red">03</font>           MOV	DL,<font color="red">03</font> 		;ｾｸﾀ  No.<font color="red">3</font>
+
+1FC0:0049 80FA<font color="red">11</font>         CMP	DL,<font color="red">11</font> 		;READ DATA ｻﾌﾞﾙｰﾁﾝ　ｴﾝﾄﾘ
+1FC0:004C 7209           JB	0057 		;ｾｸﾀNo.><font color="red">16</font>？
+
+
+
+・PC-9884 (1MB)
+
+1FC0:0019 B501           MOV	CH,01 		;ｾｸﾀ長(N=1 256ﾊﾞｲﾄ)
+1FC0:001B B1<font color="red">01</font>           MOV	CL,<font color="red">01</font> 		;ｼﾘﾝﾀﾞNo.<font color="red">1</font>
+1FC0:001D B600           MOV	DH,00 		;ﾍｯﾄﾞ No.0
+1FC0:001F B2<font color="red">01</font>           MOV	DL,<font color="red">01</font> 		;ｾｸﾀ  No.<font color="red">1</font>
+
+1FC0:0049 80FA<font color="red">1B</font>         CMP	DL,<font color="red">1B</font> 		;READ DATA ｻﾌﾞﾙｰﾁﾝ　ｴﾝﾄﾘ
+1FC0:004C 7209           JB	0057 		;ｾｸﾀNo.><font color="red">26</font>？
+
+
+
 </PRE>
       </TD>
     </TR>
