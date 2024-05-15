@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>2HDなDISK-BASICを2DDに移植する</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>2HDなDISK-BASICを2DDに移植する</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>2DDなDISK-BASICを2HDに移植する事もできます</B><BR>
+      EPSONのDISK-BASICは未検証です</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>
+★概要
+DISK-BASICの制約として、起動可能なディスクが
+例えば1MB版なら1MBのものしか作れないわけですが、
+今回は1MB版のDISK-BASICから640KB 2DDなDISK-BASICを
+作ってみようという趣旨の企画です。
+
+ちなみに640KB -> 1MBもできる
+
+
+★できるやつとできないやつ
+
+Ver 2.0以降の1MBなDISK-BASICが対象です
+※品番とバージョンの関係はこちらも参照
+<a href="./n88.htm">N88BASIC バージョン一覧</a>
+
+Ver 3.0, PC-98H44以降のディスクは
+おそらく無改変で2HD <--> 2DDに出来ると思います。
+
+Ver 2.0, PC-98H39-4WとPC-98H87はIPLの改変が必要ですが、
+DISK-CODEは無改変で移植できます。
+
+Ver 1.0, PC-9884はそもそも2DD未対応です。
+2DD対応のPC-98H37-4Wというものがあるという噂を聞きますが、
+未対応なPC-9884を2DD仕様にするのはしんどそうです。
+
+尚、EPSONのDISK BASICは未検証です。
+
+★やり方
+
+用意するもの
+・移植元となるDISK-BASIC
+・移植先のフロッピー（フォーマット済）
+640KB -> 1MBにする場合、先頭は128bytes/Secなのでちと面倒です。
+・バイナリエディタ
+Windows 10機でディスクイメージを操作したほうがいい
+
+ベタイメージ化はVectorのPDPがオススメ。
+https://www.vector.co.jp/soft/dl/dos/util/se023706.html
+
+FAT関連の操作はVectorのFDSがオススメ。
+https://www.vector.co.jp/soft/dos/util/se000577.html
+
+移植元のDISK-BASICを対象に
+1. IPL抽出 先頭(トラック0サイド0セクタ0)から512bytes
+
+2. FATを見てDISK-CODEのサイズを概算
+
+   FATの位置:
+   1MBならトラック35サイド0セクタ24-26
+   2DDならトラック40サイド0セクタ14-16
+   
+   FDS > Sectorで見ると楽
+
+   ここではFEが何連続しているかを数える
+   トラック0サイド0を先頭として、
+   1バイト=1サイドで使用状況が書いてある
+   数える事で、どのサイドまでがDISK-CODE
+   かを大まかに知ることができる
+
+3. DISK-CODEのバイナリ抽出
+   1MBならトラック1サイド0セクタ0から
+   2DDならトラック0サイド0セクタ1から
+   2.で調べたサイドまで全抽出
+
+以下は移植先のディスクで
+
+4. DISK-CODEのバイナリを書く
+   1MBならトラック1サイド0セクタ0から
+   2DDならトラック0サイド0セクタ1から
+
+5. FATを編集
+   1MBならトラック35サイド0セクタ24-26
+   2DDならトラック40サイド0セクタ14-16
+   2.で調べたサイド数をもとに計算する。
+   2DDではトラック0サイド0から、
+   1MBではトラック1サイド0からが
+   DISK-CODE領域なので要注意
+   1FAT = 1サイドあたりの容量：
+   1MB: 256bytes ×26
+   2DD: 256bytes ×16
+
+   FDS > SectorでRキーを連打して
+   どこまであるか見たほうがはやいと思う
+
+6. IPLを書く先頭から512bytes
+
+
+★PC-98H39 / PC-98H87間の移植について
+
+IPLを変える必要アリ。
+
+以下はDISKTUT2.LZHにある、PC-98H39-4WのIPLの解説
+
+     +0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +A +B +C +D +E +F
+0000 BE C0 1F 8E D6 BC 00 02-B8 5F 0E CD 1B A0 84 05
+0010 B4 07 CD 1B 72 EA BB 00-98 B5 01 B1 00 B6 00 B2
+0020 03 BE 00 10 8E C6 BD 00-00 E8 1D 00 A0 00 05 0C
+0030 50 A2 00 05 BE 60 00 8E-DE C6 06 05 05 01 B8 00
+0040 E8 50 B8 02 00 50 CB FE-C2 80 FA 11 72 09 80 F6
+0050 01 B2 01 75 02 FE C1 53-81 FB 00 01 72 03 BB 00
+0060 01 B4 56 CD 1B 72 99 5B-81 C5 00 01 81 EB 00 01
+0070 77 D5 C3 00 00 00 00 00-00 00 00 00 00 00 00 00
+
+
+1FC0:0000 BEC01F         MOV	SI,1FC0 
+1FC0:0003 8ED6           MOV	SS,SI 
+1FC0:0005 BC0002         MOV	SP,0200 	;ｽﾀｯｸの設定
+1FC0:0008 B85F0E         MOV	AX,0E5F		;DISK BIOS SET
+1FC0:000B CD1B           INT	1B		;5"FD両面ﾓｰﾄﾞの設定
+1FC0:000D A08405         MOV	AL,[0584] 	;disk_boot
+1FC0:0010 B407           MOV	AH,07 		;DISK BIOS RECALIBRATE
+1FC0:0012 CD1B           INT	1B 		;ﾍｯﾄﾞのｼﾘﾝﾀﾞ0への移動
+1FC0:0014 72EA           JB	0000 		;ｴﾗｰ処理
+1FC0:0016 BB0098         MOV	BX,9800 	;読み込むﾊﾞｲﾄ数
+1FC0:0019 B501           MOV	CH,01 		;ｾｸﾀ長(N=1 256ﾊﾞｲﾄ)
+<font color="red">1FC0:001B B100           MOV	CL,00 		;ｼﾘﾝﾀﾞNo.0</font>
+1FC0:001D B600           MOV	DH,00 		;ﾍｯﾄﾞ No.0
+<font color="red">1FC0:001F B203           MOV	DL,03 		;ｾｸﾀ  No.3</font>
+1FC0:0021 BE0010         MOV	SI,1000 
+1FC0:0024 8EC6           MOV	ES,SI 		;読み込むｾｸﾞﾒﾝﾄ
+1FC0:0026 BD0000         MOV	BP,0000 	;読み込むｵﾌｾｯﾄ
+1FC0:0029 E81D00         CALL	0049 		;READ DATA
+1FC0:002C A00005         MOV	AL,[0500] 	;bios_flag 
+1FC0:002F 0C50           OR	AL,50           ;DISK BASIC 使用ﾌﾗｸﾞ ON
+1FC0:0031 A20005         MOV	[0500],AL 
+1FC0:0034 BE6000         MOV	SI,0060 	;DISK BASIC ﾜｰｸ･ｾｸﾞﾒﾝﾄ
+1FC0:0037 8EDE           MOV	DS,SI 
+1FC0:0039 C606050501     MOV	Byte Ptr [0505],01 ;uc_srvt N88-BASIC(86)
+1FC0:003E B800E8         MOV	AX,E800 
+1FC0:0041 50             PUSH	AX 
+1FC0:0042 B80200         MOV	AX,0002 
+1FC0:0045 50             PUSH	AX 
+1FC0:0046 CB             RETF	 		;ROM BASIC へのｼﾞｬﾝﾌﾟ
+1FC0:0047 FEC2           INC	DL 		;ｾｸﾀNo.+1
+<font color="red">1FC0:0049 80FA11         CMP	DL,11</font> 		;READ DATA ｻﾌﾞﾙｰﾁﾝ　ｴﾝﾄﾘ
+1FC0:004C 7209           JB	0057 		;<font color="red">ｾｸﾀNo.>16？</font>
+1FC0:004E 80F601         XOR	DH,01 		;ﾍｯﾄﾞ反転
+1FC0:0051 B201           MOV	DL,01 		;ｾｸﾀNo.1
+1FC0:0053 7502           JNZ	0057 
+1FC0:0055 FEC1           INC	CL 		;ﾍｯﾄﾞNo.が0ならｼﾘﾝﾀﾞNo.+1
+1FC0:0057 53             PUSH	BX 
+1FC0:0058 81FB0001       CMP	BX,0100 
+1FC0:005C 7203           JB	0061 		;最終ﾚｺｰﾄﾞ？
+1FC0:005E BB0001         MOV	BX,0100 
+1FC0:0061 B456           MOV	AH,56		;DISK BIOS
+1FC0:0063 CD1B           INT	1B 		;READ DATA ﾃﾞｰﾀの読み出し
+1FC0:0065 7299           JB	0000 		;ｴﾗｰ処理
+1FC0:0067 5B             POP	BX 
+1FC0:0068 81C50001       ADD	BP,0100 	;ﾎﾟｲﾝﾀ+100h
+1FC0:006C 81EB0001       SUB	BX,0100 	;ｶｳﾝﾀ -100h
+1FC0:0070 77D5           JA	0047 
+1FC0:0072 C3             RET	 
+
+変更する箇所は赤文字の3箇所。PC-98H87ではこうなる
+
+1FC0:0019 B501           MOV	CH,01 		;ｾｸﾀ長(N=1 256ﾊﾞｲﾄ)
+1FC0:001B B1<font color="red">01</font>           MOV	CL,<font color="red">01</font> 		;ｼﾘﾝﾀﾞNo.<font color="red">1</font>
+1FC0:001D B600           MOV	DH,00 		;ﾍｯﾄﾞ No.0
+1FC0:001F B2<font color="red">01</font>           MOV	DL,<font color="red">01</font> 		;ｾｸﾀ  No.<font color="red">1</font>
+
+1FC0:0049 80FA<font color="red">1B</font>         CMP	DL,<font color="red">1B</font> 		;READ DATA ｻﾌﾞﾙｰﾁﾝ　ｴﾝﾄﾘ
+1FC0:004C 7209           JB	0057 		;ｾｸﾀNo.><font color="red">26</font>？
+</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

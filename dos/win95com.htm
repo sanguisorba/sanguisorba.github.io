@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Windows 95 Companion for PC-9800</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>Windows 95 Companion CDメモ</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>独自研究の内容を多く含みます</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>★概要
+Windows 95には Companion版とよばれるCDが存在します。
+通常のセットアップCDと比べてインストーラがない事が特徴です。
+(OEMSETUP.EXEはおろか、SETUP.EXEすらない)
+単体販売はされておらず、Windows 95搭載PCの添付品でした。
+このCDはコンポーネント追加などの時にWIN95_xx.CABが要求された時に
+必要になるもので、リカバリメディアは別途付属していました。
+従って、セットアップのためのCDではありません。
+
+尚、WinMeなどではC:\WINDOWS\OPTIONS\CABSにCompanionと同じ趣旨の
+CABファイルが収録されています。
+
+★PC-9800版について
+PC-9800版のCompanionメディアは確実にプリインストール機種の
+添付品であり、リカバリメディアが別途添付されている形態でした。
+
+PC/AT版では起動FDにSETUP.EXEがあったという噂もありますが、
+少なくともPC98版にはOEMSETUP、SETUPがありません。
+またC:\WINDOWS\OPTIONS\CABSの中にもCABファイルがあります。
+
+ゆえに機能追加のためのCDという訳でもありません。
+
+これをなんとか使ってやろうという企画です。
+
+★用意したディスク
+Part No. 000-30386
+バージョン 4.00.950A
+
+★足りないファイル
+Companion CDでは以下のファイルが不足しています。
+・FDISK.EXE <-無いとセットアップに失敗する
+・DOSSETUP.BIN
+・OEMSETUP.BIN
+・OEMSETUP.EXE
+・SETUP.EXE
+・WINSETUP.BIN
+FDISK.EXEはWIN95_03.CAB収録のものでOK。
+他のファイルはどこかから持ってくる必要があります。
+
+Companion CDに上記ファイルを加えたものをCD-Rに焼く。
+WIN95フォルダだけでもOK。自分はCDではなくMOにコピペした。
+
+★セットアップ用ＦＤ
+CDドライバ＋HIMEM.SYS+DRVCOPYの3点があれば良いっぽい。
+
+例えばこんな感じのFDを作ります。
+
+・IO.SYS <- precopy1.cab\winboot.sys
+・MSDOS.SYS   <- 空ファイル
+・COMMAND.COM <- precopy1.cab
+・MSCDEX.EXE  <- WIN95_06.CAB
+・HIMEM.SYS   <- WIN95_04.CAB
+・NECCDM.SYSなどのCDドライバ
+・AUTOEXEC.BAT
+・CONFIG.SYS
+・DRVCOPYフォルダ
+　MSCDEX.EXE, NECCDM.SYS, HIMEM.SYS, CONFIG.SYS, 
+　AUTOEXEC.BATをコピペして入れる
+
+NECCDM.SYSはDOS6.2のアップデータから抽出できますが、
+適切なCDドライバに置き換えてください。(NECCD.SYSなど)
+
+[CONFIG.SYS]
+DEVICE=HIMEM.SYS
+BUFFERS=20
+FILES=60
+DEVICE=NECCDM.SYS /D:CD_101
+LASTDRIVE=Z
+
+[AUTOEXEC.BAT]
+@echo off
+ECHO Windows95 CD-ROM を CD-ROM ドライブにセットして下さい。
+PAUSE
+MSCDEX.EXE  /D:CD_101 /L:Q
+Q:
+cd \win95
+oemsetup
+
+MOからセットアップする時、再起動しろという指示がでたら
+OEMSETUPではなくSETUPを起動する。
+
+★メモ:HDDからのセットアップ
+
+わざわざCD-Rに焼くのが面倒な人向け
+
+1. HDDにWIN95フォルダの中身を全部コピー
+2. 先に挙げた不足ファイル群をFDからHDへコピー
+3. HDDから起動
+4. SETUP.EXEを実行 (OEMSETUPではない)
+
+</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
