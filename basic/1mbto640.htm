@@ -231,7 +231,7 @@ IPLを変える必要アリ。
 改変内容は上と全く同じです
 
 
-・PC-9835-2W (320KB)
+・PC-9835-2W(320KB)
 
 1FC0:0019 B501           MOV	CH,01 		;ｾｸﾀ長(N=1 256ﾊﾞｲﾄ)
 1FC0:001B B1<font color="red">00</font>           MOV	CL,<font color="red">00</font> 		;ｼﾘﾝﾀﾞNo.<font color="red">0</font>
@@ -253,7 +253,23 @@ IPLを変える必要アリ。
 1FC0:0049 80FA<font color="red">1B</font>         CMP	DL,<font color="red">1B</font> 		;READ DATA ｻﾌﾞﾙｰﾁﾝ　ｴﾝﾄﾘ
 1FC0:004C 7209           JB	0057 		;ｾｸﾀNo.><font color="red">26</font>？
 
+★PC-9835-1W と PC-9835-2W の移植について
 
+PC-8031-1Wを持っていないため推測ですが、多分無改造で動きます。
+変えるとしたらここでしょうか
+
+・PC-9835-1W (140KB)
+
+1FC0:0008 B8<font color="red">50</font>0E         MOV	AX,0E<font color="red">50</font>		;DISK BIOS SET
+
+1FC0:004E <font color="red">30F6</font>           XOR	DH,DH 		
+1FC0:0050 <font color="red">90</font>             NOP
+
+・PC-9835-2W (320KB)
+
+1FC0:0008 B85F0E         MOV	AX,0E5F		;DISK BIOS SET
+
+1FC0:004E 80F601         XOR	DH,01 		;ﾍｯﾄﾞ反転
 
 </PRE>
       </TD>
