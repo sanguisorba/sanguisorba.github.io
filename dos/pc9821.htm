@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MS-DOS 5.0A-H</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>MS-DOS 5.0A-H (PC-9821/S2)</H2>
+<!-- <IMG src="30ah.gif" width="384" height="512" border="0"><BR><BR> -->
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">PC-9821/S2<BR>
+      ・フロッピィディスク 3枚 (MSDOS5.0A-H)<BR>
+      ・フロッピィディスク 4枚 (WINDOWS3.0A-H)<BR>
+      ・フロッピィディスク 4枚 (MME1.0A-H)<BR>
+      ・デモンストレーションCD 1枚<BR>
+      ・三省堂辞書ステーションCD 1枚<BR>
+      ・PC-9821 ガイドブック<BR>
+      ・ソフトウェアインストールガイド<BR>
+      ・MS-DOS 5.0A さあ始めようMS-DOS<BR>
+      ・MS-DOS 5.0A ステップアップマニュアル<BR>
+      ・MS-DOS 5.0A 補足マニュアル<BR>
+      ・MS-WINDOWS 3.0A Windowsが見えてくる<BR>
+      ・MS-WINDOWS 3.0A ユーザーズガイド<BR>
+      ・MS-WINDOWS 3.0A アクセサリガイド<BR>
+      ・MS-WINDOWS 3.0A 日本語入力ガイド<BR>
+      ・マルチメディアエクステンション ユーザーズマニュアル<BR>
+      ・CD-ROMソフトウェアユーザーズマニュアル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>初代PC-9821にして唯一のWindows 3.0プリインストールモデル。
+この記事ではWindows 3.0A-H / MME 1.0-H 以外の事項について述べる。
+
+★MS-DOS 5.0A-H★
+・製品番号 0104 , リビジョン 0004
+　製品版でいうところの黄シール版に相当
+　手持ちの黄シール版と比較したところ、
+　PC-9821添付の5.0A-Hのほうが古いという意外な結果に
+
+・製品版と異なり、AVSDRV.SYSとAVGDRV.SYSが標準収録
+
+・PC-9821にはCDドライブが搭載されているがDOSのディスクに
+　CDドライブのドライバ類がなく、使用するためには
+　Windows MME をセットアップする必要がある
+
+・PC-9821/S1のMS-DOS 5.0A-Hは5枚組らしい
+
+・初回起動時に起動する「固定ディスクチェックプログラム」は
+　セットアップFDに収録されていない
+
+★メニューファイルについて★
+・MS-DOS ディスク#1にはMENU.MNUが収録されているが、
+　セットアップでコピーされないので手動コピーが必要
+
+・MENUから呼び出されるCD起動用バッチファイル群は
+　Windows 3.0A-H ディスク #1に収録されており、
+　COPYCD.BAT を実行することでインストールが可能
+
+★PC-9821/S2の設定★
+出荷時の設定ファイルをメモとして置いておきます
+
+・CONFIG.SYS
+FILES=30
+BUFFERS=10
+SHELL=A:\COMMAND.COM /P
+DEVICE=A:\DOS\HIMEM.SYS
+DEVICE=A:\DOS\SMARTDRV.SYS 2048 512
+DOS=HIGH
+DEVICE=A:\WINDOWS\NECCD.SYS /D:CD_101
+
+・AUTOEXEC.BAT
+@ECHO OFF
+A:\WINDOWS\MSCDEX /D:CD_101
+PATH A:\WINDOWS;A:\DOS;A:\
+SET TEMP=A:\DOS
+SET DOSDIR=A:\DOS
+WIN
+MENU</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
