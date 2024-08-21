@@ -1,137 +1,135 @@
 |----------------------------------------------------------------------
-|	ＰＡＣＫＩＮＧ．ＬＳＴ
+|	�o�`�b�j�h�m�f�D�k�r�s
 |
-|	マイクロソフト　マクロアセンブラ　バージョン５．１０
-|	パッケージリスト
+|	�}�C�N���\�t�g�@�}�N���A�Z���u���@�o�[�W�����T�D�P�O
+|	�p�b�P�[�W���X�g
 |
-|	Ｃｏｐｙｒｉｇｈｔ　マイクロソフト株式会社　１９８８
-|----------------------------------------------------------------------
-|	MSKK T/T Aug/14/88
 |----------------------------------------------------------------------
 
-本製品には以下のものが含まれています。
-
-マニュアル
-	ﾕｰｻﾞｰｽﾞｶﾞｲﾄﾞ
-	ﾗﾝｹﾞｰｼﾞﾚﾌｧﾚﾝｽ
-	ﾗｲﾌﾞﾗﾘﾚﾌｧﾚﾝｽ
+���p�b�P�[�W�Ɋ܂܂��t�@�C���\���͈ȉ��̂悤�ɂȂ��Ă��܂��B
 
 
+�t���b�s�[�f�B�X�N	�Q��
+	�e�t���b�s�[�f�B�X�N�Ɋ܂܂�Ă���t�@�C���͈ȉ��̒ʂ�ł��B
+	�m���nTEXT	�e�L�X�g�t�@�C��
+	      REAL	�l�r�|�c�n�r���[�h�œ��삵�܂��B
+	      PROTECT	�l�r�@�n�r�^�Q���[�h�œ��삵�܂�
+	      BOUND	�l�r�|�c�n�r���[�h�l�r�@�n�r�^�Q���[�h�œ��삵�܂��B
+	      *		�l�r�@�n�r�^�Q���[�h�ł̂ݎg�p����t�@�C���ł��B
+�@�@�@�@�@�@�@�@�@�@�@�@�l�r�|�c�n�r���[�h�݂̂ł��g���ɂȂ�ꍇ�ɂ͕K�v�L��
+�@�@�@�@�@�@�@�@�@�@�@�@�܂���B
 
+�c�h�r�j�P�F�}�N���A�Z���u���P
 
-フロッピーディスク	２枚
-	各フロッピーディスクに含まれているファイルは以下の通りです。
-	［注］TEXT	テキストファイル
-	      REAL	ＭＳ－ＤＯＳ及びＭＳ　ＯＳ／２のＭＳ－ＤＯＳモードで
-			動作します。
-	      PROTECT	ＭＳ　ＯＳ／２のプロテクトモードで動作します
-	      BOUND	ＭＳ－ＤＯＳ、ＭＳ　ＯＳ／２のＭＳ－ＤＯＳモード及び
-			プロテクトモードで動作します。
-	      *		ＭＳ　ＯＳ／２でのみ使用するファイルです。ＭＳ－ＤＯＳ
-			のみでお使いになる場合には必要有りません。
+PACKING.LST	TEXT	�{���i���߯����ؽ�
+README.DOC	TEXT	�{���i�̕⑫����
+SETUP.DOC       TEXT    �Z�b�g�A�b�v�̕��@�ɂ��Ă̐���
+SETUP.EXE       BOUND   �Z�b�g�A�b�v�u���O����
+DOS.INC		TEXT	DOS��ق�ϸ�
+MASM.EXE	REAL	ϸ۱�����
+CREF.EXE	BOUND	�۽�̧�ݽ�հè�è
+ERROUT.EXE	REAL	STDERR ��޲ڸ��ݥհè�è
+EXEHDR.EXE	BOUND	EXȨ�ق�ͯ�ް�\��հè�è
+EXEMOD.EXE	REAL	EXȨ�ق�ͯ�ް�ύXհè�è
+EXEPACK.EXE	REAL	EXȨ�ق�ͯ�ް���kհè�è
+LIB.EXE 	BOUND	ײ���� �Ȱ�ެ
+LINK.EXE	REAL	�ݶ
+MAKE.EXE	BOUND	��۸��ѕێ�հè�è
+SHOW.EXE	BOUND	÷�ĕ\��հè�è(�������۸���)
+MOUSE.COM	REAL	MS-DOS ���[�h�p�}�E�X�h���C�o�i�풓�`���j
 
-ＤＩＳＫ１：マクロアセンブラ１
+�l�h�w�d�c		<�ިڸ��>
+	����Ƃ̃C���^�[�t�F�[�X
+MIXED.INC	TEXT	����̪���pϸ�
+BAMAIN.BAS	TEXT	BASIC Ҳ���۸��� �����
+BA.ASM		TEXT	BASIC�Ƃ̲���̪�� �����
+FAMAIN.FOR	TEXT	FORTRAN Ҳ���۸��� �����
+FA.ASM		TEXT	FORTRAN�Ƃ̲���̪�� �����
+CAMAIN.C	TEXT	C Ҳ���۸��� �����
+CA.ASM		TEXT	C�Ƃ̲���̪�� �����
+POWER2.ASM	TEXT	������ �����
 
-PACKING.LST	TEXT	本製品のﾊﾟｯｹｰｼﾞﾘｽﾄ
-README.DOC	TEXT	本製品の補足説明が書かれていますので必ずお読み下さい
-MACRO.DOC	TEXT	DOS.INCで定義されているﾏｸﾛの説明
-DOS.INC		TEXT	DOSｺｰﾙのﾏｸﾛ
-MASM.EXE	REAL	ﾏｸﾛｱｾﾝﾌﾞﾗ
-CREF.EXE	BOUND	ｸﾛｽﾚﾌｧﾚﾝｽ･ﾕｰﾃｨﾘﾃｨ
-ERROUT.EXE	REAL	STDERR ﾘﾀﾞｲﾚｸｼｮﾝ･ﾕｰﾃｨﾘﾃｨ
-EXEHDR.EXE	BOUND	EXEﾌｧｲﾙのﾍｯﾀﾞｰ表示ﾕｰﾃｨﾘﾃｨ
-EXEMOD.EXE	REAL	EXEﾌｧｲﾙのﾍｯﾀﾞｰ変更ﾕｰﾃｨﾘﾃｨ
-EXEPACK.EXE	REAL	EXEﾌｧｲﾙのﾍｯﾀﾞｰ圧縮ﾕｰﾃｨﾘﾃｨ
-LIB.EXE 	BOUND	ﾗｲﾌﾞﾗﾘ ﾏﾈｰｼﾞｬ
-LINK.EXE	REAL	ﾘﾝｶ
-MAKE.EXE	BOUND	ﾌﾟﾛｸﾞﾗﾑ保守ﾕｰﾃｨﾘﾃｨ
-SHOW.EXE	BOUND	ﾃｷｽﾄ表示ﾕｰﾃｨﾘﾃｨ(ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ)
-
-ＭＩＸＥＤ		<ﾃﾞｨﾚｸﾄﾘ>
-	言語とのインターフェース
-MIXED.DOC	TEXT	MIXED.INCで定義されているﾏｸﾛの説明
-MIXED.INC	TEXT	ｲﾝﾀｰﾌｪｰｽ用ﾏｸﾛ
-CAMAIN.C	TEXT	C ﾒｲﾝﾌﾟﾛｸﾞﾗﾑ ｻﾝﾌﾟﾙ
-CA.ASM		TEXT	Cとのｲﾝﾀｰﾌｪｰｽ ｻﾝﾌﾟﾙ
-FAMAIN.FOR	TEXT	FORTRAN ﾒｲﾝﾌﾟﾛｸﾞﾗﾑ ｻﾝﾌﾟﾙ
-FA.ASM		TEXT	FORTRANとのｲﾝﾀｰﾌｪｰｽ ｻﾝﾌﾟﾙ
-BAMAIN.BAS	TEXT	BASIC ﾒｲﾝﾌﾟﾛｸﾞﾗﾑ ｻﾝﾌﾟﾙ
-BA.ASM		TEXT	BASICとのｲﾝﾀｰﾌｪｰｽ ｻﾝﾌﾟﾙ
-PAMAIN.PAS	TEXT	Pascal ﾒｲﾝﾌﾟﾛｸﾞﾗﾑ ｻﾝﾌﾟﾙ
-PA.ASM		TEXT	Pascalとのｲﾝﾀｰﾌｪｰｽ ｻﾝﾌﾟﾙ
-POWER2.ASM	TEXT	ｱｾﾝﾌﾞﾗ ｻﾝﾌﾟﾙ
-
-ＣＶ		<ﾃﾞｨﾚｸﾄﾘ>
-	コードビュー
-CV.EXE		REAL	ｺｰﾄﾞﾋﾞｭｰ
-CV.HLP			ｺｰﾄﾞﾋﾞｭｰ用ﾍﾙﾌﾟﾌｧｲﾙ
-CVPACK.EXE	BOUND	ｺｰﾄﾞﾋﾞｭｰ用付帯情報の除去ﾕｰﾃｨﾘﾃｨ
+�b�u		<�ިڸ��>
+	�R�[�h�r���[
+CV.EXE		REAL	�����ޭ�
+CV.HLP			�����ޭ��p����̧��
+CVPACK.EXE	BOUND	�����ޭ��p�t�я��̏���հè�è
+SAMPLE.BAT      TEXT    �����ޭ�����رًN���p�ޯ�̧��
+ADAPT.BAT       TEXT    �����ޭ�����رٓ��������p�ޯ�̧��
+DEMOB.BAT       TEXT    �����ޭ�����رٓ��������p�ޯ�̧��
 M_AUTO.CV		Tutorial script file
 Q_AUTO.CV		Tutorial script file
 U_AUTO.CV		Tutorial script file
 W_AUTO.CV		Tutorial script file
 E_AUTO.CV		Tutorial script file
+S1.@@@          TEXT    �����ޭ�����ر� ү����̧��
+S3.@@@          TEXT    �����ޭ�����ر� ү����̧��
+S9.@@@          TEXT    �����ޭ�����ر� ү����̧��
+S12.@@@         TEXT    �����ޭ�����ر� ү����̧��
+S13.@@@         TEXT    �����ޭ�����ر� ү����̧��
+S14.@@@         TEXT    �����ޭ�����ر� ү����̧��
+SHOWR.ASM	TEXT	�������۸��ѥ���(MS-DOSӰ��)
+PAGERR.ASM	TEXT	�������۸��ѥ���(MS-DOSӰ��)
+SHOWR.EXE	REAL	�������۸��� (MS-DOSӰ��)
+RESPOND.COM	REAL	�������۸��� (MS-DOSӰ��)
 
-ＭＥ		<ﾃﾞｨﾚｸﾄﾘ>
-	マイクロソフト・エディタ
-M.EXE		REAL	ﾏｲｸﾛｿﾌﾄ　ｴﾃﾞｨﾀ
+�l�d		<�ިڸ��>
+	�}�C�N���\�t�g�E�G�f�B�^
+M.EXE		REAL	ϲ�ۿ�ā@��ި�
 RM.EXE		BOUND	File-removing utility
 EXP.EXE 	BOUND	Expunge utility (used with RM.EXE)
 UNDEL.EXE	BOUND	File-recovery utility
-MEGREP.EXE	BOUND	文字検索ﾕｰﾃｨﾘﾃｨ
+MEGREP.EXE	BOUND	��������հè�è
 CALLTREE.EXE	BOUND
-ECH.EXE 	BOUND	文字出力ﾕｰﾃｨﾘﾃｨ（ﾏｲｸﾛｿﾌﾄ･ｴﾃﾞｨﾀで使用）
+ECH.EXE 	BOUND	�����o��հè�è�iϲ�ۿ�ĥ��ި��Ŏg�p�j
 
-ＭＥ￥ＥＸＴ	<ﾃﾞｨﾚｸﾄﾘ>
-	機能拡張用ﾌｧｲﾙ
-EXT.DOC		TEXT	Notes on Microsoft Editor extensions and support files
+�d�w�s	<�ިڸ��>
+	�@�\�g���p̧��
 EXT.H		TEXT	Support file for Microsoft Editor extensions
 EXTHDR.OBJ	
-EXTHDRP.OBJ 	
+EXTHDRP.OBJ    *
 SKEL.C		TEXT
-SKEL.DEF	TEXT
-WS.DLL			Protected-mode extension file
-WS.ZXT			Real-mode/DOS extension file
+SKEL.DEF       *TEXT
 
-ＭＥ￥ＩＮＩ	<ﾃﾞｨﾚｸﾄﾘ>
-	ｷｰｱｻｲﾝ初期設定用ﾌｧｲﾙ
+�h�m�h	<�ިڸ��>
+	�����ݏ����ݒ�p̧��
 QUICK.INI	TEXT	Quick-product configuration file for Microsoft Editor
 BRIEF.INI	TEXT	BRIEF(R) initialization file for Microsoft Editor
 EPSILON.INI 	TEXT	Epsilon(TM) configuration file for Microsoft Editor
+WS.DLL	       *	MS OS/2 mode extension file
+WS.ZXT			MS-DOS mode extension file
 
 
-ＳＯＵＲＣＥ	<ﾃﾞｨﾚｸﾄﾘ>
-	サンプル　ＭＡＳＭソースファイル
-MAKESHOW.BAT	TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ用ﾊﾞｯﾁファイル(MS-DOS)
-MAKESHOW.CMD   *TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ用ﾊﾞｯﾁファイル(OS/2)
-SHOW		TEXT	MAKESHOWで使用(MAKE.EXE用ﾌｧｲﾙ)
-PAGERR.ASM	TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(ﾘｱﾙﾓｰﾄﾞ)
-SHOWR.ASM	TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(ﾘｱﾙﾓｰﾄﾞ)
-SHOWR.EXE	REAL	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ (MS-DOS)
-PAGERP.ASM     *TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(ﾌﾟﾛﾃｸﾄﾓｰﾄﾞ)
-SHOWP.ASM      *TEXT	ｻﾝﾌﾟﾙﾌﾟﾛｸﾞﾗﾑ･ｿｰｽ(ﾌﾟﾛﾃｸﾄﾓｰﾄﾞ)
-SHOWS.DEF      *TEXT	ﾓｼﾞｭｰﾙ定義ﾌｧｲﾙ
+�c�h�r�j�Q�F�}�N���A�Z���u���Q
 
+MASM.EXE       *BOUND	ϸ۱�����
+ILINK.EXE      *BOUND	�ݸ����٥�ݶ
+EXEC.EXE       *REAL	ILINK.EXE���g�p���܂�
+IMPLIB.EXE     *BOUND	���߰� ײ���� �Ȱ�ެ
+LINK.EXE       *BOUND	�ݶ
+CVP.EXE	       *PROTECT	�����ޭ�
+CVP.HLP	       *	�����ޭ��p����̧��
+MEP.EXE	       *PROTECT	ϲ�ۿ�ā@��ި�
+APILMR.OBJ     * 	64K stack object file (for use with BIND)
+DOSCALLS.LIB   * 	DOS CALL Library
 
-ＤＩＳＫ２：マクロアセンブラ２
+�h�m�b�k�t�c�d		<�ިڸ��>
+	�l�r�@�n�r�^�Q���[�h�p�C���N���[�h�t�@�C��
 
-MASM.EXE       *PROTECT	ﾏｸﾛｱｾﾝﾌﾞﾗ
-BIND.EXE       *BOUND	ﾊﾞｲﾝﾃﾞｨﾝｸﾞ･ﾕｰﾃｨﾘﾃｨ
-ILINK.EXE      *BOUND	ｲﾝｸﾘﾒﾝﾀﾙ･ﾘﾝｶ
-EXEC.EXE       *REAL	ILINK.EXEが使用します
-IMPLIB.EXE     *BOUND	ｲﾝﾎﾟｰﾄ ﾗｲﾌﾞﾗﾘ ﾏﾈｰｼﾞｬ
-LINK.EXE       *BOUND	ﾘﾝｶ
-CVP.EXE	       *PROTECT	ｺｰﾄﾞﾋﾞｭｰ
-CVP.HLP	       *	ｺｰﾄﾞﾋﾞｭｰ用ﾍﾙﾌﾟﾌｧｲﾙ
-MEP.EXE	       *PROTECT	ﾏｲｸﾛｿﾌﾄ　ｴﾃﾞｨﾀ
-APILMR.OBJ     *	64K stack object file (for use with BIND)
-
-ＩＮＣＬＵＤＥ		<ﾃﾞｨﾚｸﾄﾘ>
-	ＯＳ／２用インクルードファイル
-OS2.DOC 	*TEXT	ｲﾝｸﾙｰﾄﾞﾌｧｲﾙの説明
 OS2.INC 	*TEXT	Root include file for OS/2 calls
 BSE.INC 	*TEXT	Base include file for OS/2 calls
 BSEDOS.INC	*TEXT	Base include file for DOSCALLS
 BSEERR.INC	*TEST	Base include file for errors
 BSESUB.INC	*TEXT	Base include file for video, keyboard, & mouse
 OS2DEF.INC	*TEXT	OS/2 common definitions
+
+�r�n�t�q�b�d	<�ިڸ��>
+	�T���v���@�l�`�r�l�\�[�X�t�@�C��
+MAKESHOW.BAT	TEXT	�������۸��їp�ޯ��t�@�C��(MS-DOSӰ��)
+MAKESHOW.CMD   *TEXT	�������۸��їp�ޯ��t�@�C��(MS OS/2Ӱ��)
+SHOW		TEXT	MAKESHOW�Ŏg�p(MAKE.EXE�p̧��)
+PAGERR.ASM	TEXT	�������۸��ѥ���(MS-DOSӰ��)
+PAGERP.ASM     *TEXT	�������۸��ѥ���(MS OS/2Ӱ��)
+SHOWR.ASM	TEXT	�������۸��ѥ���(MS-DOSӰ��)
+SHOWP.ASM      *TEXT	�������۸��ѥ���(MS OS/2Ӱ��)
+SHOWS.DEF      *TEXT	Ӽޭ�ْ�`̧��
