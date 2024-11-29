@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PC-9801-03を-13に改造する</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>PC-9801-03を-13に改造する</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>自己責任にて改造を実施してください</B><BR>
+      <A href="cmt03.txt">解析資料はこちら</A></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>★概要★
+PC-9801-03には複数のリビジョンがあり、現在３種類確認しています
+・72402621　一番最初のバージョン
+　        　後に手配線で抵抗とキャパシタが追加されている
+・72402623　抵抗とキャパシタの修正を反映したバージョン
+・72402624  74LS175が追加されているが詳細不明
+
+今回は72402621の基板を-13化してみました。
+72402623, 72402624は未所持であるため
+パターンカットの位置が異なる可能性が高いです。
+充分に調べてから実施してください。
+
+★-03と-13の違い★
+自分調べですが、-03と-13の違いはクロック選択です。
+-03ではシステムクロックの2分周固定で、
+-13ではシステムクロックの2分周と4分周が選べます。
+
+8MHz動作時は4分周に設定され、8251の上限3MHz以内で動作します。
+
+01VXでは8MHzの時は4分周、10MHzでは2分周で設定されるため、
+10MHzクロックでの動作は運次第です。
+
+
+★未修正の72402621に修正を加える★
+ワイヤ配線が一切ない72402621 CMTボードを拾ってしまった方は、
+-13化の改造着手前に72402623相当の修正を行う必要があります。
+具体的には次のような修正です。
+
+用意するもの
+抵抗　　　　11kΩ　２個
+コンデンサ　470pF　２個
+
+<IMG alt="XORの時定数修正" width="512" height="512" border="0" src="./03_4.gif">
+
+・3J - D4024BC の下側の赤い×はパターンカットです。
+　誤カットにご注意ください。
+・"471"の白いランドはGNDに配線されているので未配線でOK
+・4J - D4030BC の2ピンと6ピンはRとCの両方に配線します
+
+★-13化工事★
+上記工事の済んでいる方はいよいよ-13化の工事を行います。
+
+用意するもの
+ＩＣ　　　74LS157  1個
+パスコン　0.1uF    1個
+
+74LS157の追加位置はどこでもいいです。今回はここに置きました。
+
+<IMG alt="74LS157の設置位置" width="512" height="512" border="0" src="./03_1.gif">
+
+配線図はこちら
+
+<IMG alt="13化工事写真" width="512" height="512" border="0" src="./03_3.gif">
+
+かなり汚い配線ですが、完成図はこんな感じになりました。
+
+<IMG alt="13化工事実物" width="512" height="512" border="0" src="./03_2.gif">
+
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
