@@ -20,7 +20,7 @@ OFF-OFF-OFF: D7000-D7FFF
 
 N88-BASIC使用時はD7000固定
 
-JP1 ROM有効 ABショート=ON  BCショート=OFF
+JP1(SW2) ROM有効 ABショート=ON  BCショート=OFF
 
 JP2 LFA-14のみ　デフォルトはOPEN
 SHORTで18ピンが接続される模様　詳細不明

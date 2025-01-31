@@ -1,0 +1,34 @@
+PC-9801-08
+PC-9801-09
+メーカー不詳「5 2DD FDC」
+640KB I/F
+
+PC-9801-08は無印PC-9801専用で、2DDから起動するには拡張ROM(PC-9809)が必要。
+拡張ROMはN-BASIC ROM(PC-9807)と同じソケットを占拠するため同時使用不可
+
+メーカー不詳の「5 2DD FDC」はROMの内容がPC-9801-09と同一であるから
+PC-9801-09のデッドコピーと判断した。
+
+8連DIP 1個(SW1)と、1x3ジャンパピン2個(SW2,3)
+
+SW1
+1-2 割込みレベル
+INT 3: ON-ON (SASI I/Fを使用する場合はINT3使用不可)
+INT 4: ON-OFF (デフォルト)
+INT 5: OFF-ON
+INT 6: OFF-OFF
+
+3-4-5 ON-OFF-OFF 固定
+
+6-7-8 メモリアドレス Dx000 - DxFFFを占拠
+D0xxx: ON-ON-ON
+D1xxx: ON-ON-OFF
+D2xxx: ON-OFF-ON
+D3xxx: ON-OFF-OFF
+D4xxx: OFF-ON-ON
+D5xxx: OFF-ON-OFF
+D6xxx: OFF-OFF-ON (デフォルト)
+D7xxx: OFF-OFF-OFF
+
+SW2 A-B固定 (2DD BIOS ROMを切り離す場合はB-C)
+SW3 A-B固定
