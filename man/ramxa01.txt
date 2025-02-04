@@ -15,3 +15,6 @@ ON-ON-OFF-ON   : 400000 - 4FFFFF
 OFF-ON-OFF-ON  : 500000 - 5FFFFF
 ON-OFF-OFF-ON  : 600000 - 6FFFFF
 OFF-OFF-OFF-ON : 700000 - 7FFFFF
+
+CバスボードだがPC-98XA専用で他機種では使用できない。
+通常のCバスボードより細長いので外見で判別可能。
