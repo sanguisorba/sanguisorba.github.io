@@ -1,0 +1,40 @@
+FYD051 (TEAC FD-55F-03-U)
+
+PC-9801F内蔵のFDD
+ドライブ1にはターミネータDIP抵抗が搭載
+"1AM E3317"と書いてあるが、
+
+
+
+HS: SHORTの時DRIVE SELECTでヘッドロード (OPEN)
+HM: SHORTの時MOTOR ONでヘッドロード (OPEN)
+HSとHMは同時にSHORTしない事
+
+DSx: ドライブ番号 (ドライブ0=DS0, ドライブ1=DS1)
+MX: DSx関係なく常にDRIVE SELECT状態
+
+ML: SHORTの時、LED条件でもMOTOR ON (OPEN)
+IU: SHORTで#4 IN USEを使用 (OPEN)
+HL: SHORTで#4 HEAD LOADを使用 (SHORT)
+SM: SHORTでHS,HMジャンパが有効 (SHORT)
+
+マニュアルにはHL=SHORTの時はSM,HS,HMの設定項目は無視されるとあり、
+本来であればSMはOPENとしなければいけない。
+
+UR,U0,U1 : LED条件
+
+RE: 常にOPEN(FD-55Gのみ有効、本機種ではショートとしても機能しない)
+
+PM: SHORTでディスク挿入時にモータ回転
+
+前面LEDの点灯条件は以下の6通りのみ有効
+
+IU U0 U1 UR
+O  O  O  O   DRIVE SELECT
+O  O  O  S   DRIVE SELECT AND READY
+S  S  O  O   IN USE
+S  S  S  O   IN USE (latched)
+S  O  O  O   DRIVE SELECT OR IN USE
+S  O  S  O   DRIVE SELECT OR IN USE (latched)
+
+U0とURを同時にショートしない事

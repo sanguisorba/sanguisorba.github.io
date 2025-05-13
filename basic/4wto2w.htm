@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PC-98H39-4W -> -2W</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>PC-98H39-4W(2DD)から<BR>2D版システムディスクを作る</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>PC-98H39-2W (5&quot;2D) が作れちゃう！</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>
+注意事項と覚書き
+・new diskは本プログラムの実行前に
+　format.nipで2Dの物理フォーマットを行うこと
+・470から520までの行は省略可能
+
+100 CLS
+110 PRINT &quot;Make 2D version of PC-98H39-4W&quot;
+120 PRINT &quot; &quot;
+130 PRINT &quot;Mount PC-98H39-4W(2DD) on drive&quot;
+140 INPUT &quot;Master drive#&quot;;DFR
+150 PRINT &quot; &quot;
+160 PRINT &quot;Mount new disk (2D) on drive&quot;
+170 INPUT &quot;New drive#&quot;;DTR
+180 PRINT &quot;Formatting disk in drive&quot;;DTR
+190 FIELD #0, 128 AS A$,128 AS B$
+200 LSET A$=STRING$(128,CHR$(&HFF))
+210 LSET B$=STRING$(128,CHR$(&HFF))
+220 FOR TRK=0 TO 39
+230  FOR SIDE=0 TO 1
+240   FOR SECS=1 TO 16
+250   DSKO$ DTR,SIDE,TRK,SECS
+260   NEXT SECS
+270  NEXT SIDE
+280 NEXT TRK
+290 PRINT &quot;Copying DISK-CODE&quot;
+300 FOR TRK=0 TO 8
+310  FOR SIDE=0 TO 1
+320   FOR SECS=1 TO 16
+330   D$=DSKI$(DFR,SIDE,TRK,SECS)
+340   DSKO$ DTR,SIDE,TRK,SECS
+350   NEXT SECS
+360  NEXT SIDE
+370 NEXT TRK
+380 PRINT &quot;Making FAT&quot;
+390 FIELD #0, 18 AS A$,56 AS B$,2 AS C$,180 AS D$
+400 LSET A$=STRING$(18,CHR$(&HFE))
+410 LSET B$=STRING$(56,CHR$(&HFF))
+420 LSET C$=STRING$(2,CHR$(&HFE))
+430 LSET D$=STRING$(180,CHR$(&HFF))
+440 FOR SECS=14 TO 16
+450  DSKO$ DTR,1,18,SECS
+460 NEXT SECS
+470 PRINT &quot;Making Directories&quot;
+480 LSET A$=STRING$(18,CHR$(&HFF))
+490 LSET C$=STRING$(2,CHR$(&HFF))
+500 FOR SECS=1 TO 12
+510  DSKO$ DTR,1,18,SECS
+520 NEXT SECS
+530 PRINT &quot;Making ID&quot;
+540 FIELD #0, 1 AS A$,1 AS B$, 254 AS C$
+550 LSET A$=STRING$(1,CHR$(&H00))
+560 LSET B$=STRING$(1,CHR$(&HFF))
+570 LSET C$=STRING$(254,CHR$(&H20))
+580 DSKO$ DTR,1,18,13
+590 END</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
