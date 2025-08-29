@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PC-9884 -> PC-9835-2W</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>PC-9884(8&quot;2D)から<BR>5&quot;1D版システムディスクを作る</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>PC-9835-1Wもどきを作る</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>
+注意事項と覚書き
+・new diskは本プログラムの実行前に
+　format.nipで2Dの物理フォーマットを行うこと
+・PC-9884のIPLで意味のある領域は先頭128バイトだけ
+・PC-8034-1Wまたは無印PC-8034で作業すること
+
+100 CLS
+110 PRINT &quot;MAKE PC-9835-1W FROM PC-9884&quot;
+120 PRINT &quot; &quot;
+130 PRINT &quot;MOUNT PC-9884(8 2D) ON MASTER DRIVE&quot;
+140 INPUT &quot;MASTER DRIVE#&quot;;DFR
+150 PRINT &quot; &quot;
+160 PRINT &quot;MOUNT A NEW DISK (5 1D) ON NEW DRIVE&quot;
+170 INPUT &quot;NEW DRIVE#&quot;;DTR
+200 PRINT &quot;COPYING IPL&quot;
+210 D$=DSKI$(DFR,0,0,1)
+220 FIELD #0,28 AS A$,1 AS B$,3 AS C$,1 AS D$,42 AS E$,1 AS F$,180 AS G$
+230 LSET B$=STRING$(1,CHR$(&H00))
+240 LSET D$=STRING$(1,CHR$(&H03))
+250 LSET F$=STRING$(1,CHR$(&H11))
+260 DSKO$ DTR,0,1
+270 D$=DSKI$(DFR,0,0,3)
+280 DSKO$ DTR,0,0,2
+300 PRINT &quot;COPYING DISK-CODE&quot;
+310 DFRTRK=1
+320 DFRSIDE=0
+330 DFRSECS=1
+340 FOR DTRTRK=0 TO 3
+350  FOR DTRSIDE=0 TO 1
+360   FOR DTRSECS=1 TO 16
+370   IF DTRTRK>0 THEN GOTO 400
+380   IF DTRSIDE=1 THEN GOTO 400
+390   IF DTRSECS<2 THEN DTRSECS=3
+400   D$=DSKI$(DFR,DFRSIDE,DFRTRK,DFRSECS)
+410   DSKO$ DTR,DTRTRK*2+DTRSIDE,DTRSECS
+420   DFRSECS=DFRSECS + 1
+430   IF DFRSECS=27 THEN DFRSECS=1:DFRSIDE=DFRSIDE+1
+440   IF DFRSIDE=2  THEN DFRSIDE=0:DFRTRK=DFRTRK+1
+450   NEXT DTRSECS
+460  NEXT DTRSIDE
+470 NEXT DTRTRK
+500 PRINT &quot;MAKING FAT&quot;
+510 FIELD #0, 32 AS A$,4 AS B$,2 AS C$,218 AS D$
+520 LSET A$=STRING$(32,CHR$(&HFE))
+530 LSET B$=STRING$(4,CHR$(&HFF))
+540 LSET C$=STRING$(2,CHR$(&HFE))
+550 LSET D$=STRING$(218,CHR$(&HFF))
+560 FOR SECS=14 TO 16
+570  DSKO$ DTR,18,SECS
+580 NEXT SECS
+600 PRINT &quot;MAKING ID&quot;
+610 FIELD #0, 1 AS A$,1 AS B$, 254 AS C$
+620 LSET A$=STRING$(1,CHR$(&H00))
+630 LSET B$=STRING$(1,CHR$(&HFF))
+640 LSET C$=STRING$(254,CHR$(&H20))
+650 DSKO$ DTR,18,13
+700 END</PRE>      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

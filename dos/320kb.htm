@@ -4,16 +4,16 @@
 <META http-equiv="Content-Type" content="text/html">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>N88DISK-BASICのフォーマットについて</TITLE>
+<TITLE>MS-DOSのフォーマットについて</TITLE>
 </HEAD>
 <BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
 <CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif"><BR>
-<H2>N88DISK-BASICのフォーマットについて</H2>
+<H2>MS-DOSのフォーマットについて</H2>
 <TABLE border="0">
   <TBODY>
     <TR>
-      <TD align="center" valign="middle" width="473">N88 DISK-BASICのフォーマットと<BR>
-      媒体変換ユーティリティを掲載しています<BR>
+      <TD align="center" valign="middle" width="473">MS-DOSの5&quot;2D(320KB)について<BR>
+      解析した情報を掲載しています<BR>
       作者は責任を負いません<BR>
       完全自己責任でご利用ください</TD>
     </TR>
@@ -24,30 +24,14 @@
 <TABLE width="491" border="0">
   <TBODY>
     <TR>
-      <TD><A href="1mbto640.htm"><FONT size="+1">1MBなDISK-BASICを640KB/320KBに移植する</FONT></A></TD>
+      <TD><A href="fdd.htm"><FONT size="+1">フロッピーディスクの構造(MS-DOS)</FONT></A></TD>
     </TR>
   </TBODY>
 </TABLE>
 <TABLE width="491" border="0">
   <TBODY>
     <TR>
-      <TD>DISK-BASICのフォーマット変更に関する覚書きです</TD>
-    </TR>
-  </TBODY>
-</TABLE>
-<BR><IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
-<BR>
-<TABLE width="491" border="0">
-  <TBODY>
-    <TR>
-      <TD><A href="4wto2w.htm"><FONT size="+1">PC-98H39-4W(2DD)から5&quot;2D版システムディスクを作る</FONT></A></TD>
-    </TR>
-  </TBODY>
-</TABLE>
-<TABLE width="491" border="0">
-  <TBODY>
-    <TR>
-      <TD>PC-98H39-4Wから5&quot;2D版のシステムディスクを作る<BR>ユーティリティです<BR></TD>
+      <TD>主に320KB FDの話</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -56,15 +40,30 @@
 <TABLE width="491" border="0">
   <TBODY>
     <TR>
-      <TD><A href="2wto1w.htm"><FONT size="+1">PC-98H39-2W(5&quot;2D)から5&quot;1D版システムディスクを作る</FONT></A></TD>
+      <TD><A href="640kb2d.htm"><FONT size="+1">640KB FDD上で320KB FDを書く</FONT></A></TD>
     </TR>
   </TBODY>
 </TABLE>
 <TABLE width="491" border="0">
   <TBODY>
     <TR>
-      <TD>PC-98H39-2Wから5&quot;1D版のシステムディスクを作る<BR>
-	ユーティリティです。PC-80S31またはPC-8031-2W用</TD>
+      <TD>コンパイル済パッチファイルもあるよ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR><IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<TABLE width="491" border="0">
+  <TBODY>
+    <TR>
+      <TD><FONT size="+1">MS-DOS1.25(PS98-111-SF)でPC-80S31を使う</FONT></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE width="491" border="0">
+  <TBODY>
+    <TR>
+      <TD>ついに判明した8&quot;2D環境で5&quot;2Dを使う方法</BR>5&quot;2D版システムディスクを作る方法もあるよ</BR>執筆中</TD>
 
     </TR>
   </TBODY>
@@ -74,15 +73,14 @@
 <TABLE width="491" border="0">
   <TBODY>
     <TR>
-      <TD><A href="84to35.htm"><FONT size="+1">PC-9884(8&quot;2D)から5&quot;2D版システムディスクを作る</FONT></A></TD>
+      <TD><FONT size="+1">MS-DOS2.0(PS98-121-Hxx)でPC-80S31を使う</FONT></TD>
     </TR>
   </TBODY>
 </TABLE>
 <TABLE width="491" border="0">
   <TBODY>
     <TR>
-      <TD>PC-9884から5&quot;2D版のシステムディスクを作る<BR>
-	ユーティリティです。</TD>
+      <TD>IO.SYSのタイムスタンプが831031のリビジョンに限る</BR>気が向いたら書きます。</TD>
 
     </TR>
   </TBODY>
@@ -92,16 +90,7 @@
 <TABLE width="491" border="0">
   <TBODY>
     <TR>
-      <TD><A href="84to351w.htm"><FONT size="+1">PC-9884(8&quot;2D)から5&quot;1D版システムディスクを作る</FONT></A></TD>
-    </TR>
-  </TBODY>
-</TABLE>
-<TABLE width="491" border="0">
-  <TBODY>
-    <TR>
-      <TD>PC-9884から5&quot;1D版のシステムディスクを作る<BR>
-	ユーティリティです。PC-8031-1W用</TD>
-
+      <TD>320KB FDDの認識ルーチンが存在するバージョンは1.25と2.0のうち型番PS98-121かつタイムスタンプが831031のものです<br>PS98-121の初期版(タイムスタンプが830917)とPS98-122以降では320KB FDDの認識ルーチンが存在せず使用できません。<BR>また、片面ドライブ(PC-8031-1W)は認識せず使用できません。</TD>
     </TR>
   </TBODY>
 </TABLE>
