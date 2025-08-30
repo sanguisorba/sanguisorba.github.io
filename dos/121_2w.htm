@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MS-DOS1.25(PS98-111-SF)でPC-80S31を使う</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>MS-DOS2.0(PS98-121-Hxx)でPC-80S31を使う</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>IO.SYSのタイムスタンプが831031のリビジョンに限る</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>★概要
+・5&quot;2D版のMS-DOS 2.0はタイムスタンプが"831031"で
+　同じ"831031"の5&quot;2DD版、8&quot;2D版も存在する。
+・タイムスタンプが"830917"のMS-DOS 2.0では、
+　320KB FDDの認識ルーチンを一切持たない。
+・-122以降のDOS 2.0でも320KB FDDの認識ルーチンは存在せず、跡形もない。
+・運よく"831031"のMS-DOS 2.0が手元にある人専用のページ
+　
+
+★FORMATの挙動について
+・Ver 2.2以降のFORMATが対応。 (-122添付のVer 2.50でもOK)
+・/Sオプションをつけると256バイト/セクタ、通常は512バイト/セクタ。
+・512バイト/セクタは2.0以降、2DDドライブから読み取りのみが可能。
+・256バイト/セクタは1.25と2.0の5&quot;2D版のみ読み書き可能。
+・PC-8031-2W, 80S31の仕様として256バイト/セクタ以外のディスクは起動しない。
+　512バイト/セクタのディスクにSYSでシステムを転送しても起動しないため注意。
+・PC-80S31用スイッチの組み合わせは以下の通り。
+　1D/8: FORMAT C: /1
+　1D/9: FORMAT C: /1 /9 ←メッセージは160KBと出るが、容量は179,712バイト
+　2D/8: FORMAT C: (/S)
+　2D/9: FORMAT C: /9 ←メッセージは320KBと出るが、容量は362,496バイト
+
+★320KB FDDを使うには？
+・IO.SYSの先頭から+0080アドレスの1ビット目を1にする
+・ここがスイッチとなって割当ルーチンが有効化する
+[+0080] 1C → 1D
+
+〇DEBUGを用いた改造方法
+A>DEBUG
+-L 0 0 B 1
+-E 80
+11B8:0080 1C.1D
+-W 0 0 B 1
+-Q
+
+★320KB FDDから起動するには？
+・Ver1.25と異なり、IO.SYSは無改造で起動可能。
+・5&quot;2D用IPLはVer 2.2のFORMATにしか収録されていないため、
+　持っていない場合はIPL改造が必要。
+↑そもそも831031のIO.SYSがある時点でFORMAT 2.2は持ってるよね^^;
+・気になる人は<A href="./fdd.htm">ここの下らへんを読んでね</A>
+　</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

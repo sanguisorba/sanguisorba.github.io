@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>8インチ片面単密度フォーマッタ</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>8インチ片面単密度ディスクフォーマッタ</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>物理フォーマットはMS-DOSで可能</B><BR>
+      8&quot;1Sディスクの需要ある？</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>
+注意事項と覚書き
+・フォーマットに失敗する場合は
+　MS-DOSで物理フォーマットするとよい
+
+100 CLS
+110 PRINT "8 inch 1S FORMATTER"
+120 PRINT " "
+130 PRINT "MOUNT A NEW DISK (8 1S) ON DRIVE"
+140 INPUT "DRIVE#";DFR
+200 PRINT "FORMATTING"
+210 FIELD #0,128 AS A$, 128 AS B$
+220 LSET A$=STRING$(128,CHR$(&HFF))
+230 LSET B$=STRING$(128,CHR$(&HFF))
+240 FOR TRK=0 TO 76
+250  FOR SECS=1 TO 13
+260  DSKO$ DTR,TRK,2*SECS-1
+270  NEXT SECS
+280 NEXT TRK
+300 PRINT "MAKING FAT"
+310 FIELD #0, 35 AS A$,1 AS B$,220 AS C$
+320 LSET A$=STRING$(35,CHR$(&HFF))
+330 LSET B$=STRING$(1,CHR$(&HFE))
+340 LSET C$=STRING$(220,CHR$(&HFF))
+350 FOR SECS=11 TO 13
+360  DSKO$ DTR,35,2*SECS-1
+370 NEXT SECS
+400 PRINT "MAKING ID"
+410 FIELD #0, 1 AS A$,1 AS B$, 254 AS C$
+420 LSET A$=STRING$(1,CHR$(&H00))
+430 LSET B$=STRING$(1,CHR$(&HFF))
+440 LSET C$=STRING$(254,CHR$(&H20))
+450 DSKO$ DTR,35,19
+500 END</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MS-DOS1.25(PS98-111-SF)でPC-80S31を使う</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>MS-DOS1.25(PS98-111-SF)でPC-80S31を使う</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>独自研究の内容を多く含みます</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>★概要
+・8&quot;2D版MS-DOS 1.25(PS98-111-SF)ではFDDの認識という概念を持たず、
+　1MB FDDのDS0,DS1を決め打ちでA,Bドライブに割り当てているだけ。
+・上記より320KB FDDは認識せず、使用できない。
+・IO.SYSをデバッガで覗くと320KB FDDの認識ルーチンは生きているので、
+　どこかを改変すれば叩き起せると信じて解析をしたら、できた。
+・HDD対応版 PS98-111-HSFでも似たような方法で行けるはず
+・片面FDD(PC-8031-1W)はトラック数が異なるため使用不可。認識しない。
+・1MB FDDは決め打ちの割当だが、320KB FDDは認識なので
+　320KB FDDが接続されていない時は1MB FDDのみの割当となる。
+・DOS2.0でフォーマットした5&quot;1D(160KB)は使用できない模様。
+　(5&quot;320KBのみ)
+
+★FORMATの挙動について
+・/Sオプションをつけると256バイト/セクタ、通常は512バイト/セクタ。
+・512バイト/セクタは2.0以降、2DDドライブから読み取りのみが可能。
+・256バイト/セクタは1.25と2.0の5&quot;2D版のみ読み書き可能。
+・PC-8031-2W, 80S31の仕様として256バイト/セクタ以外のディスクは起動しない。
+　512バイト/セクタのディスクにSYSでシステムを転送しても起動しないため注意。
+・-SF添付のFORMATでは5&quot;1Dフォーマットができない。
+
+★320KB FDDを使うには？
+・IO.SYSの先頭から+0080アドレスの1ビット目を1にする
+・ここがスイッチとなって割当ルーチンが有効化する
+[+0080] 00 → 01
+
+〇DEBUGを用いた改造方法
+A: DEBUG
+
+DEBUG  version 1.08
+>L 0 1 B 1   ← 0 0 B 1でないことに注意!
+>E 80
+095D:0080 00.01
+>W 0 1 B 1
+>Q
+
+★320KB FDDから起動するには？
+・上記手順では320KB FDDは強制的にCドライブとなるため、
+　1MB FDDの割当ルーチンをNOPで無効化する方法をご紹介。
+・1MB FDD上のIO.SYSでは改変させないこと！
+[+01C7 - 01CA] 88 0E 88 06 → 90 90 90 90 
+
+〇DEBUGを用いた改造方法
+・FORMAT C: /Sでフォーマットした5&quot;2Dディスクを操作する
+
+A: DEBUG
+
+DEBUG  version 1.08
+>L 0 3 B 1　　← 0 2 B 1でないことに注意!
+>D 01C0 01CF
+095D:01C0  1F 50 8A E0 E8 9A 07 <font color="red">88-0E 08 06</font> F6 06 80 02 01   .P. h......v....
+
+※上記、赤文字部分が88-0E 08 06でない場合はQでご退出ください！
+
+>E 01C7
+095D:01C7 88.90
+>E 01C8
+095D:01C8 0E.90
+>E 01C9
+095D:01C9 08.90
+>E 01CA
+095D:01CA 06.90
+>W 0 3 B 1
+>Q</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
