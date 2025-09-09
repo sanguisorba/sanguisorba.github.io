@@ -1,0 +1,727 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PC-8031</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>PC-8031-1WとPC-80S31</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>N88BASICとMSDOSの挙動については別記事参照</B><BR>
+      (どっちも中古で入手。高かった;_;)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>★概要
+・PC-8031（無印）と-1Wは片面35トラック、
+　PC-8031-2WとPC-80S31は両面40トラック
+・Z80搭載インテリジェントドライブ。贅沢仕様！
+・後述のコマンドが片面では少ない
+
+★使用されているFDDの種類
+・手動ロックスイッチのあるドライブはTEAC製、
+　無いドライブは松下通信工業製(National)と判別可能（？）
+〇PC-8031および8031-1W
+・National JK-873-N
+・TEAC FD-50A-02-U
+〇PC-8031-2W (両面)
+・TEAC FD-50B-53-U
+〇PC-80S31
+・TEAC FD-55B</PRE>
+      ★FDDポート
+      <TABLE border="1" width="512">
+        <TBODY>
+          <TR>
+            <TD align="center">#</TD>
+            <TD valign="middle" align="center">FDD</TD>
+            <TD valign="middle" align="center">8031内部IF</TD>
+            <TD valign="middle" align="center">8032外部IF</TD>
+          </TR>
+          <TR>
+            <TD align="center">2</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">-</TD>
+          </TR>
+          <TR>
+            <TD align="center">4</TD>
+            <TD valign="middle" align="center">HEAD LOAD (IN USE)</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">DRIVE SELECT3</TD>
+          </TR>
+          <TR>
+            <TD align="center">6</TD>
+            <TD valign="middle" align="center">DRIVE SELECT3</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">HEAD LOAD3</TD>
+          </TR>
+          <TR>
+            <TD align="center">8</TD>
+            <TD valign="middle" align="center">INDEX</TD>
+            <TD valign="middle" align="center">INDEX</TD>
+            <TD valign="middle" align="center">INDEX</TD>
+          </TR>
+          <TR>
+            <TD align="center">10</TD>
+            <TD valign="middle" align="center">DRIVE SELECT0</TD>
+            <TD valign="middle" align="center">DRIVE SELECT0/1</TD>
+            <TD valign="middle" align="center">DRIVE SELECT2</TD>
+          </TR>
+          <TR>
+            <TD align="center">12</TD>
+            <TD valign="middle" align="center">DRIVE SELECT1</TD>
+            <TD valign="middle" align="center">HEAD LOAD0/1</TD>
+            <TD valign="middle" align="center">HEAD LOAD2</TD>
+          </TR>
+          <TR>
+            <TD align="center">14</TD>
+            <TD valign="middle" align="center">DRIVE SELECT2</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">MOTOR ON3</TD>
+          </TR>
+          <TR>
+            <TD align="center">16</TD>
+            <TD valign="middle" align="center">MOTOR ON</TD>
+            <TD valign="middle" align="center">MOTOR ON0/1</TD>
+            <TD valign="middle" align="center">MOTOR ON2</TD>
+          </TR>
+          <TR>
+            <TD align="center">18</TD>
+            <TD valign="middle" align="center">DIRECTION</TD>
+            <TD valign="middle" align="center">DIRECTION</TD>
+            <TD valign="middle" align="center">DIRECTION</TD>
+          </TR>
+          <TR>
+            <TD align="center">20</TD>
+            <TD valign="middle" align="center">STEP</TD>
+            <TD valign="middle" align="center">STEP</TD>
+            <TD valign="middle" align="center">STEP</TD>
+          </TR>
+          <TR>
+            <TD align="center">22</TD>
+            <TD valign="middle" align="center">WRITE DATA</TD>
+            <TD valign="middle" align="center">WRITE DATA</TD>
+            <TD valign="middle" align="center">WRITE DATA</TD>
+          </TR>
+          <TR>
+            <TD align="center">24</TD>
+            <TD valign="middle" align="center">WRITE GATE</TD>
+            <TD valign="middle" align="center">WRITE GATE</TD>
+            <TD valign="middle" align="center">WRITE GATE</TD>
+          </TR>
+          <TR>
+            <TD align="center">26</TD>
+            <TD valign="middle" align="center">TRACK0</TD>
+            <TD valign="middle" align="center">TRACK0</TD>
+            <TD valign="middle" align="center">TRACK0</TD>
+          </TR>
+          <TR>
+            <TD align="center">28</TD>
+            <TD valign="middle" align="center">WRITE PROTECT</TD>
+            <TD valign="middle" align="center">WRITE PROTECT</TD>
+            <TD valign="middle" align="center">WRITE PROTECT</TD>
+          </TR>
+          <TR>
+            <TD align="center">30</TD>
+            <TD valign="middle" align="center">READ DATA</TD>
+            <TD valign="middle" align="center">READ DATA</TD>
+            <TD valign="middle" align="center">READ DATA</TD>
+          </TR>
+          <TR>
+            <TD align="center">32</TD>
+            <TD valign="middle" align="center">SIDE SELECT</TD>
+            <TD valign="middle" align="center">SIDE SELECT</TD>
+            <TD valign="middle" align="center">SIDE SELECT</TD>
+          </TR>
+          <TR>
+            <TD align="center">34</TD>
+            <TD valign="middle" align="center">READY</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">-</TD>
+          </TR>
+        </TBODY>
+      </TABLE><BR>★FDCポートとプリンタポート(PC-8031の前期型以外は要コネクタ)<BR>
+      <TABLE border="1" width="512">
+        <TBODY>
+          <TR>
+            <TD align="center">1</TD>
+            <TD valign="middle" align="center">PB0</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD valign="middle" align="center">PA0</TD>
+            <TD align="center">1</TD>
+            <TD valign="middle" align="center">STB</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">3</TD>
+            <TD valign="middle" align="center">PB1</TD>
+            <TD valign="middle" align="center">4</TD>
+            <TD valign="middle" align="center">PA1</TD>
+            <TD align="center">3</TD>
+            <TD valign="middle" align="center">D0</TD>
+            <TD valign="middle" align="center">4</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">5</TD>
+            <TD valign="middle" align="center">PB2</TD>
+            <TD valign="middle" align="center">6</TD>
+            <TD valign="middle" align="center">PA2</TD>
+            <TD align="center">5</TD>
+            <TD valign="middle" align="center">D1</TD>
+            <TD valign="middle" align="center">6</TD>
+            <TD valign="middle" align="center">GND</TD>
+
+          </TR>
+          <TR>
+            <TD align="center">7</TD>
+            <TD valign="middle" align="center">PB3</TD>
+            <TD valign="middle" align="center">8</TD>
+            <TD valign="middle" align="center">PA3</TD>
+            <TD align="center">7</TD>
+            <TD valign="middle" align="center">D2</TD>
+            <TD valign="middle" align="center">8</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">9</TD>
+            <TD valign="middle" align="center">PB4</TD>
+            <TD valign="middle" align="center">10</TD>
+            <TD valign="middle" align="center">PA4</TD>
+            <TD align="center">9</TD>
+            <TD valign="middle" align="center">D3</TD>
+            <TD valign="middle" align="center">10</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">11</TD>
+            <TD valign="middle" align="center">PB5</TD>
+            <TD valign="middle" align="center">12</TD>
+            <TD valign="middle" align="center">PA5</TD>
+            <TD align="center">11</TD>
+            <TD valign="middle" align="center">D4</TD>
+            <TD valign="middle" align="center">12</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">13</TD>
+            <TD valign="middle" align="center">PB6</TD>
+            <TD valign="middle" align="center">14</TD>
+            <TD valign="middle" align="center">PA6</TD>
+            <TD align="center">13</TD>
+            <TD valign="middle" align="center">D5</TD>
+            <TD valign="middle" align="center">14</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">15</TD>
+            <TD valign="middle" align="center">PB7</TD>
+            <TD valign="middle" align="center">16</TD>
+            <TD valign="middle" align="center">PA7</TD>
+            <TD align="center">15</TD>
+            <TD valign="middle" align="center">D6</TD>
+            <TD valign="middle" align="center">16</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">17</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">18</TD>
+            <TD valign="middle" align="center">PC4</TD>
+            <TD align="center">17</TD>
+            <TD valign="middle" align="center">D7</TD>
+            <TD valign="middle" align="center">18</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">19</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">20</TD>
+            <TD valign="middle" align="center">PC5</TD>
+            <TD align="center">19</TD>
+            <TD valign="middle" align="center">ACK</TD>
+            <TD valign="middle" align="center">20</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">21</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">22</TD>
+            <TD valign="middle" align="center">PC6</TD>
+            <TD align="center">21</TD>
+            <TD valign="middle" align="center">BSY</TD>
+            <TD valign="middle" align="center">22</TD>
+            <TD valign="middle" align="center">GND</TD>
+          </TR>
+          <TR>
+            <TD align="center">23</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">24</TD>
+            <TD valign="middle" align="center">PC7</TD>
+            <TD align="center">23</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">24</TD>
+            <TD valign="middle" align="center">-</TD>
+          </TR>
+          <TR>
+            <TD align="center">25</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">26</TD>
+            <TD valign="middle" align="center">PC0</TD>
+            <TD align="center">25</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">26</TD>
+            <TD valign="middle" align="center">*</TD>
+          </TR>
+          <TR>
+            <TD align="center">27</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">28</TD>
+            <TD valign="middle" align="center">PC1</TD>
+            <TD align="center">27</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">28</TD>
+            <TD valign="middle" align="center">-</TD>
+          </TR>
+          <TR>
+            <TD align="center">29</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">30</TD>
+            <TD valign="middle" align="center">PC2</TD>
+            <TD align="center">29</TD>
+            <TD valign="middle" align="center">*</TD>
+            <TD valign="middle" align="center">30</TD>
+            <TD valign="middle" align="center">*</TD>
+          </TR>
+          <TR>
+            <TD align="center">31</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">32</TD>
+            <TD valign="middle" align="center">PC3</TD>
+            <TD align="center">31</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">32</TD>
+            <TD valign="middle" align="center">-</TD>
+          </TR>
+          <TR>
+            <TD align="center">33</TD>
+            <TD valign="middle" align="center">GND</TD>
+            <TD valign="middle" align="center">34</TD>
+            <TD valign="middle" align="center">RST</TD>
+            <TD align="center">33</TD>
+            <TD valign="middle" align="center">-</TD>
+            <TD valign="middle" align="center">34</TD>
+            <TD valign="middle" align="center">-</TD>
+          </TR>
+        </TBODY>
+      </TABLE>*4.7KΩプルアップ(+5V)<BR>30ピンってだいたいGNDのプリンタが多いような^^;<BR>
+      <PRE>※1.25は2.0と大きく仕様が異なります
+・BPBがないためFAT IDが無い
+・そもそも320KB FDDの制御はupd765でない
+
+★FDの構造
+2DD/8を例に説明します</PRE>
+      <TABLE border="1" width="512">
+        <TBODY>
+          <TR>
+            <TD>セクタ</TD>
+            <TD>中身</TD>
+          </TR>
+          <TR>
+            <TD>1</TD>
+            <TD>IPL &amp; BPB</TD>
+          </TR>
+          <TR>
+            <TD>2</TD>
+            <TD rowspan="2">FATテーブル(1024バイト)</TD>
+          </TR>
+          <TR>
+            <TD>3</TD>
+          </TR>
+          <TR>
+            <TD>4</TD>
+            <TD rowspan="2">予備FAT(1024バイト)</TD>
+          </TR>
+          <TR>
+            <TD>5</TD>
+          </TR>
+          <TR>
+            <TD>6</TD>
+            <TD rowspan="7">ルートディレクトリエントリ<BR>
+            1エントリ=32バイト<BR>
+            1セクタ=16エントリ<BR>
+            16エントリ×7セクタ=112エントリ</TD>
+          </TR>
+          <TR>
+            <TD>7</TD>
+          </TR>
+          <TR>
+            <TD>8</TD>
+          </TR>
+          <TR>
+            <TD>9</TD>
+          </TR>
+          <TR>
+            <TD>10</TD>
+          </TR>
+          <TR>
+            <TD>11</TD>
+          </TR>
+          <TR>
+            <TD>12</TD>
+          </TR>
+          <TR>
+            <TD>13</TD>
+            <TD>クラスタ002h</TD>
+          </TR>
+          <TR>
+            <TD>14</TD>
+            <TD>クラスタ003h</TD>
+          </TR>
+          <TR>
+            <TD>15</TD>
+            <TD>クラスタ004h</TD>
+          </TR>
+          <TR>
+            <TD>16</TD>
+            <TD>クラスタ005h</TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+<PRE>
+・IPL & BPB
+実質ブートローダ(IPL)領域。
+ディスクのフォーマット情報(BPB)も格納されている。
+
+・FATテーブル
+巨大なファイルは複数のクラスタ(セクタ)に跨って保存される。
+その時、どこのクラスタに保存したかを記述する場所がFAT。
+該当のクラスタ番号に対して次に参照すべき
+クラスタ番号（または終端）が格納されている。
+また、不良セクタや空きクラスタといった情報も格納されている。
+
+非常に重要な領域なので、同じ内容の予備FATが後に続く。
+
+・ルートディレクトリエントリ
+ルートディレクトリのファイル情報が格納された領域。
+ファイルの名前、サイズ、更新日時、
+先頭クラスタ番号といったデータが格納されている。
+領域が固定されているため、エントリ数に制限がある。
+
+・クラスタ
+データ領域。サブディレクトリエントリも含みます。
+クラスタ000hと001hはFAT12の仕様上、無い事になっているため
+クラスタ002hが先頭です。
+
+★IPL &amp; BPB
+場所:セクタ0
+
+2.0以降ではBPBと呼ばれるFDの仕様を収めたブロックがあります。
+PC98ではファイル操作時、BPBの情報を参照しません。
+※2DDのIPLではFATIDで8セクタか9セクタかを判別しています。
+
+※加筆予定。工事中
+
+★FAT
+IPLの次はFATテーブルがあります。
+各セクタの使用状況が12bitで収められています。
+FATが12bitだから、FAT12です。
+基本的には次のセクタ番号です。
+以下は特別な意味をもった値です。
+・空き状態である (000h)
+・終端セクタである (FFFh)
+・不良セクタである(FF7h)
+・予約済みである (FFBh, FFEhなど)
+
+・リトルエンディアンの読み方
+1セクタにつき12bit = 1.5バイトの情報のため、
+読み取る際は2セクタ毎、3バイト毎に読みます。
+桁毎にA2 A1 A0と振って、以下のような状況を仮定します。
+
+クラスタA: A2 A1 A0 h
+クラスタB: B2 B1 B0 h
+
+この時、FATテーブルでは次のように格納されています。
+[A1 A0] [B0 A2] [B2 B1]
+
+以下は2DD/8の例です。
+FATはIPLの次、セクタ1にあります。
+
+
+     00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+0200 FB FF FF 03 40 00 05 60 00 07 80 00 09 A0 00 0B
+0210 C0 00 0D E0 00 0F 00 01 11 20 01 13 40 01 15 60
+
+この中から、FATセクタ010h, 011hを見てみます。
+
+     08 09 0A
+0210 11 20 01
+
+この時、FATの値は次のように読み取る事ができます。
+いずれも、次のセクタ番号が格納されています。
+クラスタ010h: 011h
+クラスタ011h: 012h
+
+クラスタ000hと001hは予約済という仕様になっており、
+領域がそもそも存在しません。
+
+クラスタ002hの位置はフォーマット毎に異なります。
+2DD/8であれば、セクタ12がクラスタ002hです。
+
+次のセクタにも同じ内容のFATが予備で記録されています。
+
+★ディレクトリエントリ
+1エントリ32バイトで次の内容が記述されています。
+オフセット
++00h - +0Ah : ファイル名(8文字+拡張子3文字) or 名前
++0Bh        : 属性
+              0x01 : 読み取り専用 +R
+              0x02 : 隠しファイル +H
+              0x04 : システムファイル +S
+              0x08 : ボリュームラベル
+              0x10 : ディレクトリ
+              0x20 : アーカイブ +A
++16h - +17h : 最終更新時刻
++18h - +19h : 最終更新日付
++1Ah - +1Bh : 先頭クラスタ番号
+              0バイトのファイルとラベルは"0"
++1Ch - +1Fh : ファイルサイズ
+              ディレクトリとラベルは0
+
+・ファイル (+RHSA)
+49 4F 20 20 20 20 20 20 53 59 53 27 00 00 00 00 IO      SYS'....
+00 00 00 00 00 00 5B 7E 31 07 02 00 00 A0 00 00 ......[~1.......
+
+・ボリュームラベル
+50 52 4F 47 52 41 4D 20 20 20 20 28 00 00 00 00 PROGRAM    (....
+00 00 00 00 00 00 BB 60 2E 11 00 00 00 00 00 00 ......ｻ`........
+
+・サブディレクトリ
+49 4E 43 4C 55 44 45 20 20 20 20 10 00 00 00 00 INCLUDE    .....
+00 00 00 00 00 00 40 09 2E 11 30 02 00 00 00 00 ......@...0.....
+
+ルートディレクトリエントリとサブディレクトリエントリは
+少し内部の仕様が違います。
+サブディレクトリエントリはデータとして考えるべきです。
+
+★ルートディレクトリエントリ固有の仕様
+・ボリュームラベルはルートディレクトリを1エントリ消費する
+・領域固定のため、エントリ数に制限がある
+・そのかわりいくらエントリを増やしてもクラスタを消費しない
+
+★サブディレクトリエントリ固有の仕様
+・サブディレクトリ作成時に「./」と「../」で2エントリ消費する
+・1クラスタ内に収まらないと空きクラスタを消費する
+(2DD/8なら16エントリ、2HDなら32エントリ毎に1クラスタ消費)
+・そのかわりクラスタチェインによりエントリ数に制限が無い
+
+★FDの構造
+2D/8 システムディスク
+
+・トラック0サイド0</PRE>
+      <TABLE border="1" width="512">
+        <TBODY>
+          <TR>
+            <TD>セクタ</TD>
+            <TD>中身</TD>
+          </TR>
+          <TR>
+            <TD>1</TD>
+            <TD rowspan="2">IPL &amp; BPB</TD>
+          </TR>
+          <TR>
+            <TD>2</TD>
+          </TR>
+          <TR>
+            <TD>3</TD>
+            <TD rowspan="2">FATテーブル(512バイト)</TD>
+          </TR>
+          <TR>
+            <TD>4</TD>
+          </TR>
+          <TR>
+            <TD>5</TD>
+            <TD rowspan="2">予備FAT(512バイト)</TD>
+          </TR>
+          <TR>
+            <TD>6</TD>
+          </TR>
+          <TR>
+            <TD>7</TD>
+            <TD rowspan="10">ルートディレクトリエントリ<BR>
+            1エントリ=32バイト<BR>
+            1セクタ=8エントリ<BR>
+            8エントリ×14セクタ=112エントリ</TD>
+          </TR>
+          <TR>
+            <TD>8</TD>
+          </TR>
+          <TR>
+            <TD>9</TD>
+          </TR>
+          <TR>
+            <TD>10</TD>
+          </TR>
+          <TR>
+            <TD>11</TD>
+          </TR>
+          <TR>
+            <TD>12</TD>
+          </TR>
+          <TR>
+            <TD>13</TD>
+          </TR>
+          <TR>
+            <TD>14</TD>
+          </TR>
+          <TR>
+            <TD>15</TD>
+          </TR>
+          <TR>
+            <TD>16</TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+<PRE>
+・トラック0サイド1
+</PRE>
+      <TABLE border="1" width="512">
+        <TBODY>
+          <TR>
+            <TD>セクタ</TD>
+            <TD>中身</TD>
+          </TR>
+          <TR>
+            <TD>1</TD>
+            <TD rowspan="4">ルートディレクトリエントリ<BR>
+            1エントリ=32バイト<BR>
+            1セクタ=8エントリ<BR>
+            8エントリ×14セクタ=112エントリ</TD>
+          </TR>
+          <TR>
+            <TD>2</TD>
+          </TR>
+          <TR>
+            <TD>3</TD>
+          </TR>
+          <TR>
+            <TD>4</TD>
+          </TR>
+          <TR>
+            <TD>5</TD>
+            <TD>クラスタ002h</TD>
+          </TR>
+          <TR>
+            <TD>6</TD>
+            <TD>クラスタ003h</TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+<PRE>
+★MS-DOS 1.25 (PS98-111)での320KB FDDについて
+・MS-DOS 1.25の5&quot;版、PS98-111-H2Wは
+　確定で320KB FDDから起動した
+　（当時は640KBがないので5&quot; = 320KB）
+
+・PS98-111-H2Wは256バイトセクタ
+
+・PS98-111-SFのIO.SYSは1MB FDのDS0決め打ちで
+　COMMAND.COMを探しにいくため、PS98-111-H2Wを
+　練成する試みは失敗している
+
+PS98-111-SFは8&quot;2D×2の決め打ち認識であり、
+1MB FDDを4台使うことはできませんし、
+320KB FDDについても認識しておらず使用できません。
+
+FORMAT.COMには2D用IPLがあるため錬成は容易に見えますが、
+PS98-111-H2WのIO.SYSが必要です。
+
+尚、PS98-111-H2W, -HSF, -SF でIO.SYSが異なるという事が
+PC-PR101F2のマニュアルに書いてありました。
+
+★MS-DOS 2.0 (PS98-122)以降での320KB FDDについて
+
+みなさんご存知(?)の通り、MS-DOSは320KB FDDを認識しません。
+そもそもMS-DOSのマニュアルに320KB FDDサポートの記述がありません。
+（1MB FDD/640KB FDD/固定ディスクの3種類）
+
+PS98-122のIPLを書き換えて320KB FDDから起動を試みたところ、
+8&quot;2D版MS-DOS 1.25と同じく、1MB FDD or 640KB FDDのディスクへ
+COMMAND.COMを探しに行ってしまいます。
+
+また、640KB FDDからシステムディスク形式の2Dフォーマットは
+利用できない事も確認しました。
+※MS-DOS 2.0のマニュアルには以下のことが書かれている
+　　「PS98-111-H2Wシステムにてフォーマットされた
+　　システムディスクの形式のディスクはMS-DOS 2.0では
+　　使用できません」
+
+尚、外部ドライバで320KB FDDを認識・使用することは可能です。
+
+★MS-DOS 2.0 (PS98-121)での320KB FDDについて
+
+基本、上に同じですが、PS98-121-H2Wとして
+320KB FDDから起動できるものが販売されていました。
+タイムスタンプは831031のみで、8&quot;2Dと5&quot;2DDにあった
+830917のバージョンは存在しません。
+
+
+ただ手持ちのPS98-121-H4Wでは320KB FDDを認識できず、
+IPLを書き換えても1MB or 640KB FDDを探しに行ってしまいます。
+
+そのためPS98-121-H2Wは特別なIO.SYSを持っていて、
+そのバージョンでは320KB FDDが認識できたものと推測します。
+
+★IPLの書き換えについて
+
+システムディスク形式な320KB 2D用のIPLのつくりかた
+
+合言葉は以下5つのパラメータ
+
+・0100: BX FAT
+・0105: DX IO.SYSの開始場所
+・0007: DX FAT
+・0C00: BX 最初のサイドで読む量
+・1000: BX 1サイドあたりの容量
+
+;とあるバージョンのIPL
+BB0001         MOV	BX,0100 	;読み込むﾊﾞｲﾄ(256ﾊﾞｲﾄ)
+C70602020501   MOV	Word Ptr [0202],0105 
+BA0600         MOV	DX,0007 	;ﾍｯﾄﾞ No.0 ｾｸﾀ  No.7
+C7060402000C   MOV	Word Ptr [0204],0C00 
+C70606020010   MOV	Word Ptr [0206],1000 
+B501           MOV	CH,01 		;ｾｸﾀ長N(256ﾊﾞｲﾄ)
+
+;別のとあるバージョンのIPL
+BB0001         MOV	BX,0100         ;読み込むﾊﾞｲﾄ(256ﾊﾞｲﾄ)
+C70604020501   MOV	Word Ptr [0204],0105 ;サイド1セクタ5
+C70606020700   MOV	Word Ptr [0206],0007 ;サイド0セクタ7
+C7060802000C   MOV	Word Ptr [0208],0C00 ;256×12=3072ﾊﾞｲﾄ
+C7060A020010   MOV	Word Ptr [020A],1000 ;256×16=4096ﾊﾞｲﾄ
+
+バージョン毎にIPLが違うので↑を参考に変えてみてください。
+</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

@@ -109,7 +109,7 @@ PC-80S31等と接続するポートがありました。
             (バイト)</TD>
             <TD valign="middle" align="center">256,256</TD>
             <TD valign="middle" align="center">1,261,568</TD>
-            <TD valign="middle" align="center">1,213,952</TD>
+            <TD valign="middle" align="center">1,228,800</TD>
             <TD valign="middle" align="center">1,474,560</TD>
           </TR>
           <TR>
@@ -117,7 +117,7 @@ PC-80S31等と接続するポートがありました。
             (バイト)</TD>
             <TD valign="middle" align="center">252,416</TD>
             <TD valign="middle" align="center">1,250,304</TD>
-            <TD valign="middle" align="center"></TD>
+            <TD valign="middle" align="center">1,213,952</TD>
             <TD valign="middle" align="center">1,457,664</TD>
           </TR>
           <TR>
@@ -159,12 +159,26 @@ PC-80S31等と接続するポートがありました。
             <TD valign="middle" align="center">512</TD>
           </TR>
           <TR>
+            <TD align="center">セクタ/<BR>クラスタ</TD>
+            <TD valign="middle" align="center">4</TD>
+            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">1</TD>
+          </TR>
+          <TR>
             <TD align="center">ルート<BR>
             ディレクトリ</TD>
             <TD valign="middle" align="center">68</TD>
             <TD valign="middle" align="center">192</TD>
             <TD valign="middle" align="center">224</TD>
             <TD valign="middle" align="center">224</TD>
+          </TR>
+          <TR>
+            <TD align="center">予約セクタ</TD>
+            <TD valign="middle" align="center">FE:1<BR>FD:4</TD>
+            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">1</TD>
           </TR>
           <TR>
             <TD align="center">セクタ/<BR>
@@ -176,7 +190,7 @@ PC-80S31等と接続するポートがありました。
           </TR>
           <TR>
             <TD align="center">FAT ID</TD>
-            <TD valign="middle" align="center">FE</TD>
+            <TD valign="middle" align="center">FE<BR>(FD)</TD>
             <TD valign="middle" align="center">FE</TD>
             <TD valign="middle" align="center">F9</TD>
             <TD valign="middle" align="center">F0 (?)</TD>
@@ -190,7 +204,9 @@ PC-80S31等と接続するポートがありました。
           </TR>
         </TBODY>
       </TABLE>※2HCはEPSON製MS-DOSのみ正式サポート。<BR>
-      ※FATID FD, 予約セクタ4, セクタ長512の8&quot;片面単密度は未対応<BR>
+      ※セクタ長512の8&quot;片面単密度は未対応<BR>
+      ※8&quot;1SのFAT IDがFDのものは予約セクタ数が4(FEは1)。<BR>
+      　PC98のフォーマッタではFAT ID FDの8&quot;1S未採用。<BR>
       <BR>
       <TABLE border="1" width="512">
         <TBODY>
@@ -279,6 +295,15 @@ PC-80S31等と接続するポートがありました。
             <TD valign="middle" align="center">512</TD>
             <TD valign="middle" align="center">512</TD>
             <TD valign="middle" align="center">512</TD>
+          </TR>
+          <TR>
+            <TD align="center">セクタ/<BR>クラスタ</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD valign="middle" align="center">2</TD>
           </TR>
           <TR>
             <TD align="center">ルート<BR>
@@ -398,6 +423,12 @@ PC-80S31等と接続するポートがありました。
             <TD valign="middle" align="center">512</TD>
             <TD valign="middle" align="center">256</TD>
           </TR>
+          <TR>
+            <TD align="center">セクタ/クラスタ</TD>
+            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">2</TD>
+            <TD valign="middle" align="center">4</TD>
+          </TR>
             <TD align="center">ルートディレクトリ</TD>
             <TD valign="middle" align="center">112</TD>
             <TD valign="middle" align="center">112</TD>
@@ -407,7 +438,7 @@ PC-80S31等と接続するポートがありました。
             <TD align="center">予約セクタ</TD>
             <TD valign="middle" align="center">1</TD>
             <TD valign="middle" align="center">1</TD>
-            <TD valign="middle" align="center">1</TD>
+            <TD valign="middle" align="center">2</TD>
           </TR>
           <TR>
             <TD align="center">FAT</TD>
@@ -420,6 +451,18 @@ PC-80S31等と接続するポートがありました。
             <TD valign="middle" align="center">1</TD>
             <TD valign="middle" align="center">1</TD>
             <TD valign="middle" align="center">2</TD>
+          </TR>
+          <TR>
+            <TD align="center">FAT ID</TD>
+            <TD valign="middle" align="center">FE</TD>
+            <TD valign="middle" align="center">FF</TD>
+            <TD valign="middle" align="center">(?)</TD>
+          </TR>
+          <TR>
+            <TD align="center">PDA</TD>
+            <TD valign="middle" align="center">50</TD>
+            <TD valign="middle" align="center">50</TD>
+            <TD valign="middle" align="center">50</TD>
           </TR>
         </TBODY>
       </TABLE>
