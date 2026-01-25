@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>FD1035</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>FD1035</H2>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>3.5&quot; 2DD専用ドライブ、VFOなし</B><BR>
+      PC-9801U2内蔵FDD</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE><img alt="2台のFD1035" width="512" height="307" border="0" src="./1035_comp.gif">
+<CENTER> 左: 前期型　右: 後期型 </CENTER>
+2台所有しているが制御基板が全く異なっており、
+便宜的に前期型(1985/5)、後期型(1985/7)とする。
+後期型は制御基板のICが1個多い
+(34pコネクタ直下のICが2個なら前期、3個なら後期)
+しかしドライブのP/Nは同じだし、制御基板の型番も同じである
+(G9VMA 134-835281 DEC-32V0)
+
+★ジャンパ設定について
+
+以下は後期型で増設されたジャンパについての解説。
+
+前期型ではDX(ドライブ番号)を除くと3つしかジャンパがない。
+※HF, M1, HL の3つ
+
+基本的にはFD1135Dと同様の設定内容と見受けられる
+http://ematei.s602.xrea.com/kenkyu/fd1135d.htm
+
+
+FD1035固有と思われるジャンパは2個ある
+
+・MX: ドライブセレクト関連　デフォルトはOPEN
+SHORTでDX関係なく常にドライブセレクト状態(DXはオープン)
+
+・HF: 4ピンの信号設定. デフォルトは2
+1=HEAD LOAD  2=IN USE
+
+FD1035ではモータ回転と連動してヘッドロードが行われるが、
+FD1135Dと同じヘッドロード条件（読込時のみロード）とする場合、
+HF=1 M1=OPEN HL=1 (DH=1)とすると良い。
+
+
+
+以下、FD1135Dに関するジャンパ設定のコピー
+M1: ヘッドロードの条件 デフォルトはSHORT
+SHORT = MOTOR ON有効時
+OPEN = READY有効時
+
+HL: ヘッドロードの条件　デフォルトは2
+1=HEAD LOAD有効 2=HEAD LOAD無効
+※HL=1とする場合はM1=OPEN, HF=1とする必要あり
+
+以下のジャンパは後期型の制御基板のみに存在する
+
+DH: ヘッドロードの条件　デフォルトは1
+1=ドライブセレクト有効時 2=ドライブセレクト無視
+
+MO: モータオン条件　デフォルトはSHORT
+SHORT = MOTOR ON (MN = OPEN)
+OPEN = ジャンパMNに依存
+
+MN: モータオン条件　デフォルトはOPEN
+1 = DRIVE SELECT有効時
+2 = HEAD LOAD有効時
+
+DL: ディスプレイランプ条件 デフォルトはSHORT
+SHORTでランプ点灯
+
+DCG: DISK CHANGE/READY デフォルトは1
+1=READY  2=DISKCHANGE</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

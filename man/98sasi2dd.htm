@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>初代PC-9801で固定ディスク/2DDブートをする</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>初代PC-9801で固定ディスク/2DDブートをする</H2>
+<BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center">初代98は固定ディスク・2DDからの起動に対応していません<BR>
+      拡張ROMを使えば2DDからの起動は可能ですが入手困難<BR>
+      ということで本体とIFのみで無理やり起動する方法をご紹介<BR>
+      <A href="640kbif.txt">PC-9801-09解析資料はこちら</A><BR>
+      <A href="sasiif.txt">PC-9801-27解析資料はこちら</A></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>★概要★
+2DD, SASIのROMをC8000,CC000,D0000,D4000のいずれかに配置して
+ROM-BASICのモニタからSSW4を変更する
+
+2DDをD0000, SASIをD4000にすると2DD→SASIの順番で読むが、
+2DDはディスク未挿入時のタイムアウトが長いので、未使用時は
+ドライブの電源を切るかSSWで片方のみ有効にすることをおすすめ。
+
+※CC000はミュージックボードと重複注意
+※D0000はRS232Cボードと重複注意
+※D4000はGP-IBボードと重複注意
+
+★2DD: PC-9801-09★
+PC-9801-09のSW1-6,7,8を操作してアドレスを決定
+ボードの仕様でD0000-D7000のいずれかにしか配置できないため、
+例えばGP-IBボード使用時は必然的にD0000を選択する。
+
+例: D0000に配置
+ON-OFF-ON-OFF-OFF-ON-ON-ON
+
+SW2はA-B固定にしておく (B-CでROM切り離し)
+
+★SASI: PC-9801-27★
+PC-9801-07はROMアドレス固定のためIPLなしでの起動不可。
+PC-9801-27はSW3を1-8ショート、3-6ショートとすること。
+SW2でROMアドレスを変更可能。
+
+例: C8000に配置
+OFF-OFF-OFF-ON-ON-OFF-ON-ON
+
+例: D4000に配置
+OFF-OFF-OFF-ON-OFF-ON-OFF-ON
+
+★SSW4変更★
+SSW4は拡張ROMの読み込み設定で、1=有効、0=無効。
+初代PC-9801のアドレス割当は以下の通り
+0ビット目: C0000 
+1ビット目: C4000
+2ビット目: C8000
+3ビット目: CC000
+4ビット目: D0000
+5ビット目: D4000
+6ビット目: 常に0
+7ビット目: 常に0
+
+例: C8000,D0000を読む　→ 14
+例: D0000,D4000を読む　→ 30
+例: D0000を読む　→ 10
+
+変更コマンドはmon → ssw4 
+設定例:
+mon
+h]ssw4
+00-30  ←ここで設定する値を入れる
+h]^B　 ←Ctrl+Bで終了
+Ok
+
+★おまけ：拡張機能ROM(PC-9809)って何してるの？★
+D0000 + 9番地を読みに行って"55 AA"だったらD0000にジャンプ、
+D1000 + 9番地を読みに行って"55 AA"だったらD1000にジャンプ、
+というのをD7000までやってるだけ。中身は256バイト未満。
+
+-27のデフォルトはD7000なのでD0000-D6000の範囲に
+何もなければ固定ディスクの起動もできます。一応。
+
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
