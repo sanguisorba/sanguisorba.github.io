@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version  for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PC-9806</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<H1>PC-9808 (8087 8MHz)</H1>
+<H3>C8087-2</H3>
+<HR><H3><PRE>
+PC-9801E/F/M搭載用オプションとして発売
+
+搭載時、マザーボードのBIOS ROMソケット上側、8259の下側にある
+1x3ジャンパピン12Q1, 12Q2に刺さっているショートジャンパを
+どちらも左側にセットする
+
+
+   8259        8259
+----------  ----------
+
+     [--]-  [--]-
+      32 1   32 1
+----------  ----------
+   ROM         ROM
+
+メモリスイッチ SW3-3 ON SW6-1 ON
+
+コプロを搭載していない状態で上記設定を行うと起動しなくなるため注意
+
+★未搭載とする場合★
+
+未搭載の場合、マザーボードのBIOS ROMソケット上側、8259の下側にある
+1x3ジャンパピン12Q1, 12Q2に刺さっているショートジャンパを
+どちらも右側にセットする(5MHz品搭載時と同じ)
+
+
+   8259        8259
+----------  ----------
+
+     -[--]  -[--]
+     3 21   3 21
+----------  ----------
+   ROM         ROM
+
+メモリスイッチ SW3-3 OFF SW6-1 OFF
+
+
+
+
+</PRE></H3>
+<H2 align="center"><A href="index.htm">戻る</A></H2>
+</BODY>
+</HTML>

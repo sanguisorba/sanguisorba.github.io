@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version  for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>640KBフロッピィディスクIFボード</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<H1>640KBフロッピィディスクIFボード</H1>
+<H3>PC-9801-08 (G9URG + RUQ1D + RUQ1H)<BR>
+PC-9801-09 (G9URG)<BR>
+メーカー不詳「5 2DD FDC」 販売名:GS-9809</H3>
+<HR><H3><PRE>
+INT 41とDMA #3を占拠(DMAは固定)
+
+PC-9801-08 = PC-9801-09 + PC-9809 のセット商品
+初代PC-9801は2DD起動に対応しておらず、起動するための拡張ROM(PC-9809)が必要
+拡張ROMはN-BASIC ROM(PC-9807)と同じソケットを占拠するため同時使用不可
+
+メーカー不詳の「5 2DD FDC」はROMの内容がPC-9801-09と同一であるから
+PC-9801-09のデッドコピーと判断した。
+
+8連DIP 1個(SW1)と、1x3ジャンパピン2個(SW2,3)
+
+SW1
+1-2 割込みレベル
+INT 3 : ON-ON (SASI I/Fとの重複注意)
+INT 41: ON-OFF (デフォルト)
+INT 5 : OFF-ON
+INT 6 : OFF-OFF
+
+3-4-5 ON-OFF-OFF 固定
+
+6-7-8 メモリアドレス Dx000 - DxFFFを占拠
+D0xxx: ON-ON-ON
+D1xxx: ON-ON-OFF
+D2xxx: ON-OFF-ON
+D3xxx: ON-OFF-OFF
+D4xxx: OFF-ON-ON
+D5xxx: OFF-ON-OFF
+D6xxx: OFF-OFF-ON (デフォルト)
+D7xxx: OFF-OFF-OFF
+
+SW2 A-B固定 (2DD BIOS ROMを切り離す場合はB-C)
+SW3 A-B固定
+
+★PC-9809について★
+拡張機能ROMはそれぞれRUQ1DとRUQ1Hの刻印のあるROM1組で構成。
+RUQ1Dを1D, RUQ1Hを1Hにセットする。
+拡張機能ROMを使用して2DDドライブから起動するには
+ROM-BASICよりNEW ON Xコマンドを叩く。
+Xは最下位ビットが1であればよく、例えば NEW ON 13とする。
+
+</PRE></H3>
+<H2 align="center"><A href="index.htm">戻る</A></H2>
+</BODY>
+</HTML>

@@ -2,9 +2,7 @@ FYD051 (TEAC FD-55F-03-U)
 
 PC-9801F内蔵のFDD
 ドライブ1にはターミネータDIP抵抗が搭載
-"1AM E3317"と書いてあるが、
-
-
+"1AM E3317"と書いてある
 
 HS: SHORTの時DRIVE SELECTでヘッドロード (OPEN)
 HM: SHORTの時MOTOR ONでヘッドロード (OPEN)

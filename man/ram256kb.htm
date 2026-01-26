@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version  for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>拡張RAMボード (128KB/256KB)</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<H1>拡張RAMボード (128KB/256KB)</H1>
+<H3>
+PC-9801-02 拡張RAMボード(128KB) (G9RUR)<BR>
+PC-9805    増設RAM(128KB)<BR>
+メーカー不詳 PC-256-KB-RAM (256KB)<BR>
+PC-9801-31 増設RAMボード (128KB) (G9XAT)</H3>
+<HR><H3><PRE>
+★PC-9801-02★
+
+本体RAMが640KB未満の機種用に発売されたボード
+オプションの PC-9805 (18個のDRAM, 4164相当品）を搭載する事で
+256KBに容量増設が可能
+10MHz動作は非対応である事に注意
+
+2x6のジャンパ1つ
+ 1- 7ショート: 128-256K有効 = 内蔵RAM
+ 2- 8ショート: 256-384K有効 = 外付RAM
+ 3- 9ショート: 384-512K有効 = 内蔵RAM
+ 4-10ショート: 512-640K有効 = 外付RAM
+※5,6,11,12はNC
+
+実用の際は以下2パターンのどちらかを設定する
+1枚目(129KB - 384KB)
+1-7 2-8 5-11 6-12 ショート
+
+2枚目(385KB - 640KB)
+3-9 4-10 5-11 6-12 ショート
+
+★PC-9801VF/U2ではPC-9801-21を搭載しておく必要がある。
+
+・PC-9801VF（標準256K）は本体にPC-9801-21を搭載し
+384Kとしておかないと本ボードは使用できない
+
+・PC-9801U2（標準128K）は本体にPC-9801-21を2個搭載し
+384Kとしておかないと本ボードは使用できない
+
+
+本ボードおよびPC9805のDRAMは製造時期によって大きく異なっている
+筆者では以下の4種類を確認した
+・upD4164C-2 (200ns)
+・TI 4164-2NL (詳細不明）
+・upD4164C-15 (150ns)
+・upD4164C-12 (120ns)
+
+また本ボードは枝番が存在するが、価格以外は同一とされる。
+PC-9801-02  72000円
+PC-9801-02N 56000円
+PC-9801-02L 40000円
+
+PC-9805     30000円
+PC-9805K    20000円
+
+★PC-256-KB-RAM★
+PC-9801-02互換で最初から256KB分のDRAMが搭載
+本体RAMが640KB未満の機種用
+
+4連DIPスイッチが1個
+
+SW1
+129-384K: ON-ON-OFF-OFF
+385-640K: OFF-OFF-ON-ON
+
+★PC-9801-31★
+標準価格47000円
+
+本体RAMが640KB未満の機種用に発売されたボード
+PC-9801-21 PC-9801U2用増設RAMボード(128KB, 標準30000円)を
+搭載する事で256KBに容量増設が可能
+
+スイッチはボードに記載の通りでSW1が-31のメモリバンク、
+SW2がオプション -21 のメモリバンクとなっている。
+
+SW1 128-256K or 384-512K
+SW2 256-384K or 512-640K
+
+PC-9801-31で512-640Kの増設は不可
+
+・PC-9801VF（標準256K）は本体にPC-9801-21を搭載し
+384Kとしておかないと本ボードは使用できない
+
+・PC-9801U2（標準128K）は本体にPC-9801-21を2個搭載し
+384Kとしておかないと本ボードは使用できない
+
+
+</PRE></H3>
+<H2 align="center"><A href="index.htm">戻る</A></H2>
+</BODY>
+</HTML>

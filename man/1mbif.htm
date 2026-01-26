@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version  for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>1MBフロッピィディスクIFボード</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<H1>1MBフロッピィディスクIFボード</H1>
+<H3>PC-9801-15 (G9URH)<BR>Logitec LFA-14</H3>
+<HR><H3><PRE>
+INT 42とDMA #2を占拠(両方固定)
+
+8連Dip デフォルトは
+ON-OFF-ON-OFF-ON-OFF-OFF-OFF
+
+1-2: 割込みレベル
+ON-OFF: INT42 (変更しないこと)
+3-5: 不明 ON-OFF-ON 固定
+6-8: ROMのメモリアドレス
+ON -ON -ON : D0000-D0FFF
+ON -ON- OFF: D1000-D1FFF
+ON -OFF-ON : D2000-D2FFF
+ON -OFF-OFF: D3000-D3FFF
+OFF-ON -ON : D4000-D4FFF
+OFF-ON -OFF: D5000-D5FFF
+OFF-OFF-ON : D6000-D6FFF
+OFF-OFF-OFF: D7000-D7FFF
+
+N88-BASIC使用時はD7000固定
+
+JP1(SW2) ROM有効 ABショート=ON  BCショート=OFF
+
+JP2 LFA-14のみ　デフォルトはOPEN
+SHORTで18ピンが接続される模様　詳細不明
+LFA-14から何か信号が出力されているっぽい
+</PRE></H3>
+<H2 align="center"><A href="index.htm">戻る</A></H2>
+</BODY>
+</HTML>
