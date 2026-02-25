@@ -33,10 +33,16 @@
 <TABLE width="512" border="0">
   <TBODY>
     <TR>
-      <TD align="left"><PRE>PS98-125ではシリアルナンバー別で3つのリビジョンを確認している。
+      <TD align="left"><PRE>PS98-125では4つのリビジョンを確認している。
+シリアルナンバー
 2-3C55-xxxxx - EDLINバグがある。リコール対象。
 2-3C56-xxxxx - EDLINバグなどが修正されたリビジョン。
 2-3C76-xxxxx - PC-9801UV2対応版。3.5&quot;版のみ？
+
+ID
+136-908967-630-A　- PC-9801UV2対応版. 2-3C76-と同じ
+136-908967-6xx-B. - 修正版ディスク．シリアルナンバーなし
+xxは媒体種別: 30=HV 50=HSF 70-71=H4W,HU 80=HMW
 
 <font color="red">2-3C55と2-3C56はDEBUG.COMの有無で判別可能。</font>
 
@@ -50,6 +56,8 @@
 ★ファイルリスト(851025)★
 外箱は白いシールでPS98-125-Hxxと書いてある
 シリアルナンバー:2-3C55-xxxxx
+
+851213と差分のあるファイルを赤文字で示した
 
 <font color="red">IO       SYS     32768 85-10-23   13:17</font>
 MSDOS    SYS     28064 85-10-13   16:04
@@ -155,13 +163,16 @@ README   DOC     16648 85-12-26   13:44
 <font color="red">DEBUG    COM     11764 83-02-01   10:13</font>
 
 ★ファイルリスト(136-908967-630-A)★
-ラベルは初期のタイムスタンプ記載ではなく、ID記載のもの。
 FEPドライバが更新されている。
+ラベルには以下のことが書かれている
+
 PS98-125-HV
 MSDOS (3.5&quot;IIHD UV2対応)
 シリアルナンバー:2-3C76-xxxxx
 ID: 136-908967-630-A
 
+IO       SYS     32768 86-06-10    0:00
+MSDOS    SYS     28064 86-06-10    0:00
 COMMAND  COM     23942 86-06-10    0:00
 ASSIGN   COM      1787 86-06-10    0:00
 ATTRIB   EXE      8262 86-06-10    0:00
@@ -209,6 +220,61 @@ KNJDIC   SYS     56320 86-06-10    0:00
 CONFIG   SYS        20 86-06-10    0:00
 README   DOC     16648 86-06-10    0:00
 DEBUG    COM     11764 86-06-10    0:00
+
+★ファイルリスト(136-908967-6xx-B.)★
+修正版ディスクのためシリアルナンバーなし
+851213と差分のあるファイルを赤文字で示した
+
+<font color="red">IO       SYS     32768 86-06-10    0:00</font>
+<font color="red">MSDOS    SYS     28064 86-12-03    0:00</font>
+<font color="red">COMMAND  COM     24145 86-09-30    0:00</font>
+ASSIGN   COM      1787 86-09-30    0:00
+ATTRIB   EXE      8262 86-09-30    0:00
+<font color="red">BACKUP   EXE     22570 86-09-30    0:00</font>
+CHKDSK   EXE      9776 86-09-30    0:00
+COPY2    COM      3312 86-09-30    0:00
+COPYA    COM      1319 86-09-30    0:00
+CUSTOM   COM      5476 86-09-30    0:00
+<font color="red">DICM     COM     21248 86-09-30    0:00</font>
+DISKCOPY COM      6880 86-09-30    0:00
+<font color="red">DUMP     COM      1670 86-09-30    0:00</font>
+<font color="red">EDLIN    EXE      7394 86-09-30    0:00</font>
+EXE2BIN  EXE      2880 86-09-30    0:00
+FC       EXE     14018 86-09-30    0:00
+FIND     EXE      6483 86-09-30    0:00
+<font color="red">FORMAT   EXE     34038 86-09-30    0:00</font>
+JOIN     EXE      8930 86-09-30    0:00
+KEY      COM      4531 86-09-30    0:00
+LABEL    EXE      2916 86-09-30    0:00
+MORE     COM       271 86-09-30    0:00
+PRINT    EXE      8472 86-09-30    0:00
+RECOVER  EXE      4183 86-09-30    0:00
+<font color="red">RESTORE  EXE     20888 86-09-30    0:00</font>
+SPEED    COM      1209 86-09-30    0:00
+<font color="red">SUBST    EXE      9864 86-09-30    0:00</font>
+SWITCH   COM      2441 86-09-30    0:00
+SYS      EXE      2751 86-09-30    0:00
+USKCGM   COM      4128 86-09-30    0:00
+SHARE    EXE      7904 86-09-30    0:00
+<font color="red">SORT     EXE      1680 86-09-30    0:00</font>
+MSASSIGN COM      1509 86-09-30    0:00
+MASM     EXE     77362 86-09-30    0:00
+LINK     EXE     41114 86-09-30    0:00
+SYMDEB   EXE     36538 86-09-30    0:00
+MAPSYM   EXE     51904 86-09-30    0:00
+CREF     EXE     10544 86-09-30    0:00
+LIB      EXE     24138 86-09-30    0:00
+MAKE     EXE     18675 86-09-30    0:00
+<font color="red">KNJDIC   DRV      9832 86-09-30    0:00</font>
+<font color="red">NECDIC   DRV     31190 86-09-30    0:00</font>
+<font color="red">MOUSE    SYS      2989 86-09-30    0:00</font>
+MOUSE    DOC      2851 86-09-30    0:00
+NECDIC   SYS    484352 86-09-30    0:00
+KNJDIC   SYS     56320 86-09-30    0:00
+CONFIG   SYS        20 86-09-30    0:00
+README   DOC     16648 86-09-30    0:00
+DEBUG    COM     11764 86-09-30    0:00
+
 
 ★開発ツール★
 CREF 3.00, LIB 3.00, LINK 3.00, MASM 3.00, 
