@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>FD-55F-03-U (FYD051)</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>FD-55F-03-U (FYD051)</H2>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center"><B>5&quot; 2DD専用ドライブ、VFOなし</B><BR>
+      PC-9801F内蔵FDD、 PC-9831-4Wの中身</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left">
+      <PRE>
+ターミネータDIP抵抗330Ωが搭載
+"1AM E3317"と書いてある
+PC-9801Fではドライブ1、PC-9831-4Wではドライブ0に搭載
+
+HS: SHORTの時DRIVE SELECTでヘッドロード (OPEN)
+HM: SHORTの時MOTOR ONでヘッドロード (OPEN)
+HSとHMは同時にSHORTしない事
+
+DSx: ドライブ番号 (ドライブ0=DS0, ドライブ1=DS1)
+MX: DSx関係なく常にDRIVE SELECT状態
+
+ML: SHORTの時、LED条件でもMOTOR ON (OPEN)
+IU: SHORTで#4 IN USEを使用 (OPEN)
+HL: SHORTで#4 HEAD LOADを使用 (SHORT)
+SM: SHORTでHS,HMジャンパが有効 (※)
+
+※HL=SHORTの時はSM,HS,HMの設定項目は無視される。
+　本来であればSMはOPENとしなければいけない。
+　PC-9801FだとSHORT、PC-9831-4WだとOPENとなっている
+
+UR,U0,U1 : LED条件 (URのみSHORT、U0,U1はOPEN)
+
+RE: 常にOPEN(FD-55Gのみ有効。ショートとしても機能しない)
+
+PM: SHORTでディスク挿入時にモータ回転 (SHORT)
+
+前面LEDの点灯条件は以下の6通りのみ有効
+
+IU U0 U1 UR
+O  O  O  O   DRIVE SELECT
+O  O  O  S   DRIVE SELECT AND READY
+S  S  O  O   IN USE
+S  S  S  O   IN USE (latched)
+S  O  O  O   DRIVE SELECT OR IN USE
+S  O  S  O   DRIVE SELECT OR IN USE (latched)
+
+U0とURを同時にショートしない事</PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>

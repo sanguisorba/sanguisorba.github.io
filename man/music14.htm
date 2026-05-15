@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version  for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PC-9801-14</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<H1>ミュージックジェネレータボード</H1>
+<H3>
+PC-9801-14</H3>
+<HR><H3><PRE>
+N88BASICの命令一覧は<A href="../basic/music.htm">ここ</A>
+デフォルトではINT #6を使用
+
+・ポートアドレス (2C2)
+yy[1][2]_[3][4]0?_[5][6][7][8]_1??0
+(y=dont care)
+ソケットありで0、抜くと1、デフォルトは12345678 = 00001000
+IOポート008Eに2C2の値 (MSB=[1], LSB=[8])が現れる
+
+・ROMアドレス(IL3,2MI)
+IL3は最上位ビット, A1-B1ショートでC、B1-C1ショートでD
+2MIは2バイト目, 1-16から順に0-2-4-6-8-A-C-E
+デフォルトはCC000 (A1-B1ショート, 7-10ショート)
+N88BASIC使用時は移動不可
+
+・割込(1L1)
+1-4 OPEN , 2-3 OPEN  : INT0
+1-4 OPEN , 2-3 SHORT : INT4
+1-4 SHORT, 2-3 OPEN  : INT5
+1-4 SHORT, 2-3 SHORT : INT6 
+
+</PRE></H3>
+<H2 align="center"><A href="index.htm">戻る</A></H2>
+</BODY>
+</HTML>
