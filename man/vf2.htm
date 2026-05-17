@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 6.5.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PC-9801VF2</TITLE>
+</HEAD>
+<BODY bgcolor="#ffffff" text="#333333" link="#003399" vlink="#990033" alink="#339900" background="../w6b.gif">
+<CENTER><IMG alt="直線上に配置" width="512" height="50" border="0" src="../bu06_l1.gif">
+<H2>PC-9801VF2</H2>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="center">PC-9801VM2との違いをメモしました</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>PC-9801VF2とVM2の違い
+・内蔵FDDがVF2は2DD固定、VM2は2HD/2DD両用
+・内蔵メモリがVF2は256KB、VM2は384KB
+・CPUがVF2は8MHz固定、VM2は8MHz/10MHz
+
+上記を踏まえてハードウェア上の違いを見ていきます
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<TABLE width="512" border="0">
+  <TBODY>
+    <TR>
+      <TD align="left"><PRE>★電源 東北金属工業株式会社 PU418 (808-864555-001)
+　・VF2とVM2で同じ
+★メインボード G9XAH
+　基板は同じ模様 ジャンパ設定は以下の通り
+　SW6: 01-04ショート
+　(SW7どこ?)
+　SW8:01-04
+　SW9: 01-14ショート
+　SW10 (プリンタポート付近) の内容が異なる
+　SHORT=VF、OPEN=VM
+
+　外装で覆われて操作できないが、クロック切替スイッチは存在する。
+　当然ながらVF2では8MHzにセットされています。
+<IMG alt="クロックスイッチ" width="512" height="512" border="0" src="./vf2_1_sw.gif">
+
+★FDD
+　VF2では<A href="./fd1055.htm">FD1055</A>、VM2ではFD1155C。
+　両者の違いは不明。同じではないだろうか？
+
+★CPUボード
+　VF2ではG9XAS、VM2ではG9XAL
+<IMG alt="CPUボード" width="512" height="256" border="0" src="./vf2_2_cpu.gif">
+　GIF画像では粗く型番まで読めないと思うので補足。
+　・CPUはuPD70116-8
+　・クロックジェネレータはuPD71011(無印, 8MHz)
+　・水晶振動子16.9744MHz横の水晶発振器19.6608MHzが欠落
+　・7E1ジャンパピンが欠落　VM2では実装のうえショート
+　※9D2右のジャンパは"A6"リビジョンだとVM2でも未実装
+　・基板一番右に<A href="./ram21.htm">PC-9801-21</A>用ソケットが実装
+　　VM2はパターンのみでソケット未実装
+　・その代わり、F列のDRAM4個が欠落
+　　DRAMはuPD41464-15/uPD41254-15でVM2と共通
+　・BIOSはVM2と同じ内容
+
+★FDCボード
+　VF2ではG9WXT、VM2ではG9WXX
+<IMG alt="FDCボード" width="512" height="256" border="0" src="./vf2_3_fdc.gif">
+　・VM2ではVFOにHA16632APが採用されたが、VF2ではSED9420Cが採用
+　　他のロジックICを見るにPC-9801-09の設計を流用した感じがある
+</PRE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<IMG alt="直線上に配置" width="512" height="10" border="0" src="../pe03_l2.gif"><BR>
+<BR>
+<A href="index.htm"><IMG alt="トップ アイコン" width="64" height="64" align="middle" border="0" src="../st05_tp.gif"></A></CENTER>
+</BODY>
+</HTML>
